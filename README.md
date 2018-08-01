@@ -21,12 +21,12 @@ From a VSTS instance:
 8. Click **"Browse..."**
 9. Click **"Import"**
 10. When the build definition loads, it will require some attention.
-   1. **Process**
-      1. Change name: Remove **"-import"** from the end of the name.
-	  2. Select the proper "Agent queue". This will likely be **"Hosted VS2017"**.
-   2. **Get sources**
-      1. It _should_ automatically select the current projects **VSTS Git** repo. If not, select the proper **source**.
-	  2. Verify it is pulling from the proper branch, **master** by default.
+    1. **Process**
+       1. Change name: Remove **"-import"** from the end of the name.
+	   2. Select the proper "Agent queue". This will likely be **"Hosted VS2017"**.
+    2. **Get sources**
+       1. It _should_ automatically select the current projects **VSTS Git** repo. If not, select the proper **source**.
+	   2. Verify it is pulling from the proper branch, **master** by default.
 11. Click **"Save & queue > Save"**
-   1. No folder selection is required.
-   2. No comment is required.
+    1. No folder selection is required.
+    2. No comment is required.
