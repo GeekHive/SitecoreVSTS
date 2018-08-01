@@ -8,9 +8,9 @@ Clone/fork this repository to your local machine in order to import the definiti
 From a VSTS instance:
 
 1. First, you need to get the Project ID.
-  1. Log in to the VSTS project from a browser.
-  2. Once authenticated, then visit https://<VSTS Project URL>/_apis/projects
-  3. This will output all current projects. Look for the one with the proper **"Name"**, then find the corresponding **"id"** property. 
+   1. Log in to the VSTS project from a browser.
+   2. Once authenticated, then visit https://<VSTS Project URL>/_apis/projects
+   3. This will output all current projects. Look for the one with the proper **"Name"**, then find the corresponding **"id"** property. 
 2. Navigate to the desired template in the repository at `~\BuildTemplates\`
 3. Edit this *.json file
 4. Scroll all the way to the bottom and find the **"project"** property.
