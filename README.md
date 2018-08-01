@@ -9,7 +9,7 @@ From a VSTS instance:
 
 1. First, you need to get the **Project ID**.
    1. Log in to the VSTS project from a browser.
-   2. Once authenticated, visit **https://<VSTS Project URL>/_apis/projects** in a browser window.
+   2. Once authenticated, visit **https://\<VSTS Project URL\>/_apis/projects** in a browser window.
    3. This will output all current projects in JSON format. Look for the project with the proper **"Name"**, then find the corresponding **"id"** property. 
 2. Navigate to the desired template in the repository at `~\BuildTemplates\`
 3. Edit this *.json file
