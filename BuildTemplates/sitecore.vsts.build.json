@@ -92,7 +92,33 @@
     "phases": [
       {
         "steps": [
-          {
+		   {  
+			  "environment":{  
+
+			  },
+			  "enabled":true,
+			  "continueOnError":false,
+			  "alwaysRun":false,
+			  "displayName":"Download GeekHive Scripts",
+			  "timeoutInMinutes":0,
+			  "condition":"succeeded()",
+			  "task":{  
+				 "id":"e213ff0f-5d5c-4791-802d-52ea3e7be1f1",
+				 "versionSpec":"2.*",
+				 "definitionType":"task"
+			  },
+			  "inputs":{  
+				 "targetType":"inline",
+				 "filePath":"",
+				 "arguments":"",
+				 "script":"# --- Set the uri for the latest release\n$URI = \"https://api.github.com/repos/GeekHive/SitecoreVSTS/zipball\"\n\n[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12\n\n$OutputPath = \"$((Get-Location).Path)\\scripts.zip\"\n\n# --- Query the API to get the url of the zip\nInvoke-WebRequest -Uri $URI -OutFile $OutputPath\n\nAdd-Type -AssemblyName System.IO.Compression.FileSystem\nfunction Unzip\n{\n    param([string]$zipfile, [string]$outpath)\n\n    [System.IO.Compression.ZipFile]::ExtractToDirectory($zipfile, $outpath)\n}\n\nUnzip $OutputPath \"$((Get-Location).Path)\"\n\n$directory = Get-ChildItem -Directory | Select-Object -First 1\n\n$sourceDirectory = \"$((Get-Location).Path)\\$directory\"\n\n\"$($sourceDirectory)\"\n\n$destinationDirectory = \"$((Get-Location).Path)\"\n\n\"$($destinationDirectory)\"\n\nRename-Item -Path $sourceDirectory -NewName \"SitecoreVSTS\"",
+				 "errorActionPreference":"stop",
+				 "failOnStderr":"false",
+				 "ignoreLASTEXITCODE":"false",
+				 "workingDirectory":"$(Build.ArtifactStagingDirectory)"
+			  }
+		   },
+		  {
             "environment": {},
             "enabled": true,
             "continueOnError": false,
@@ -205,7 +231,7 @@
             },
             "inputs": {
               "scriptType": "filePath",
-              "scriptName": "$(Build.ArtifactStagingDirectory)\\scripts\\RemoveFiles.ps1",
+              "scriptName": "$(Build.ArtifactStagingDirectory)\SitecoreVSTS\Scripts\RemoveFiles.ps1",
               "arguments": "-pathToPackages \"$(Build.ArtifactStagingDirectory)\\_Packages\\TDS.PROJECT\"",
               "workingFolder": "$(Build.ArtifactStagingDirectory)\\scripts\\",
               "inlineScript": "# You can write your powershell scripts inline here. \n# You can also pass predefined and custom variables to this scripts using arguments\n\n Write-Host \"Hello World\"",
