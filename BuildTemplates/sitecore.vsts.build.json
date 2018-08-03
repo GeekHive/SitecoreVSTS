@@ -35,10 +35,10 @@
   ],
   "variables": {
     "BuildPlatform": {
-      "value": "Release"
+      "value": "Any CPU"
     },
 	"BuildConfiguration": {
-      "value": "Any CPU"
+      "value": "Release"
     },
     "CullProjectFiles": {
       "value": "False",
