@@ -153,7 +153,7 @@
             "inputs": {
               "solution":"$(Parameters.solution)",
               "vsVersion": "15.0",
-              "msbuildArgs": "/p:OutDir=$(build.artifactstagingdirectory) /p:SkipInvalidConfigurations=true /p:LastDeploymentGitTagName=$(LastDeploymentGitTagName) /p:CustomGitDeltaDeploy=$(EnableGitDeltaDeploy) /p:CullProjectFiles=$(CullProjectFiles)",
+              "msbuildArgs": "/p:OutDir=$(Build.ArtifactStagingDirectory) /p:SkipInvalidConfigurations=true /p:LastDeploymentGitTagName=$(LastDeploymentGitTagName) /p:CustomGitDeltaDeploy=$(EnableGitDeltaDeploy) /p:CullProjectFiles=$(CullProjectFiles)",
               "platform": "$(BuildPlatform)",
               "configuration": "$(BuildConfiguration)",
               "clean": "false",
@@ -169,7 +169,7 @@
             "enabled": true,
             "continueOnError": false,
             "alwaysRun": false,
-            "displayName": "Delete files from $(build.artifactstagingdirectory)",
+            "displayName": "Delete files from $(Build.ArtifactStagingDirectory)",
             "timeoutInMinutes": 0,
             "condition": "succeeded()",
             "refName": "DeleteFiles7",
@@ -179,7 +179,7 @@
               "definitionType": "task"
             },
             "inputs": {
-              "SourceFolder": "$(build.artifactstagingdirectory)",
+              "SourceFolder": "$(Build.ArtifactStagingDirectory)",
               "Contents": "*.dll\n*.pdb\n*.config\n*.xml\nApp_Config"
             }
           },
@@ -199,9 +199,9 @@
             },
             "inputs": {
               "scriptType": "filePath",
-              "scriptName": "$(build.artifactstagingdirectory)\\scripts\\RemoveFiles.ps1",
-              "arguments": "-pathToPackages \"$(build.artifactstagingdirectory)\\_Packages\\TDS.PROJECT\"",
-              "workingFolder": "$(build.artifactstagingdirectory)\\scripts\\",
+              "scriptName": "$(Build.ArtifactStagingDirectory)\\scripts\\RemoveFiles.ps1",
+              "arguments": "-pathToPackages \"$(Build.ArtifactStagingDirectory)\\_Packages\\TDS.PROJECT\"",
+              "workingFolder": "$(Build.ArtifactStagingDirectory)\\scripts\\",
               "inlineScript": "# You can write your powershell scripts inline here. \n# You can also pass predefined and custom variables to this scripts using arguments\n\n Write-Host \"Hello World\"",
               "failOnStandardError": "true"
             }
@@ -221,7 +221,7 @@
               "definitionType": "task"
             },
             "inputs": {
-              "PathtoPublish": "$(build.artifactstagingdirectory)",
+              "PathtoPublish": "$(Build.ArtifactStagingDirectory)",
               "ArtifactName":"$(Parameters.ArtifactName)",
               "ArtifactType": "Container",
               "TargetPath": "\\\\my\\share\\$(Build.DefinitionName)\\$(Build.BuildNumber)",
