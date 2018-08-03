@@ -57,6 +57,12 @@
     "system.debug": {
       "value": "false",
       "allowOverride": true
+    },
+    "TDS_Key":{  
+	  "value":"bueh-ls3-p5x-hj4n"
+    },
+    "TDS_OWNER":{  
+	  "value":"Nexus Media Inc."
     }
   },
   "variableGroups": [],
