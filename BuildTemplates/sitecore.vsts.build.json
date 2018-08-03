@@ -153,7 +153,7 @@
             "inputs": {
               "solution":"$(Parameters.solution)",
               "vsVersion": "15.0",
-              "msbuildArgs": "/p:OutDir=$(build.stagingDirectory) /p:SkipInvalidConfigurations=true /p:LastDeploymentGitTagName=$(LastDeploymentGitTagName) /p:CustomGitDeltaDeploy=$(EnableGitDeltaDeploy) /p:CullProjectFiles=$(CullProjectFiles)",
+              "msbuildArgs": "/p:OutDir=$(build.artifactstagingdirectory) /p:SkipInvalidConfigurations=true /p:LastDeploymentGitTagName=$(LastDeploymentGitTagName) /p:CustomGitDeltaDeploy=$(EnableGitDeltaDeploy) /p:CullProjectFiles=$(CullProjectFiles)",
               "platform": "$(BuildPlatform)",
               "configuration": "$(BuildConfiguration)",
               "clean": "false",
