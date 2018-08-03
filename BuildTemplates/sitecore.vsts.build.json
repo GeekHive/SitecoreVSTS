@@ -38,7 +38,7 @@
       "value": "Release"
     },
 	"BuildConfiguration": {
-      "value": "any cpu"
+      "value": "Any CPU"
     },
     "CullProjectFiles": {
       "value": "False",
