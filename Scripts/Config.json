@@ -1,0 +1,99 @@
+{
+  "default": {
+    "ConfigChanges": [
+      {
+        "KeyName": "/connectionStrings/add[@name='core']",
+        "Attribute": "connectionString",
+        "value": "__CoreConnectionString__"
+      },
+      {
+        "KeyName": "/connectionStrings/add[@name='master']",
+        "Attribute": "connectionString",
+        "value": "__MasterConnectionString__"
+      },
+      {
+        "KeyName": "/connectionStrings/add[@name='web']",
+        "Attribute": "connectionString",
+        "value": "__WebConnectionString__"
+      },
+       {
+        "KeyName": "/connectionStrings/add[@name='crm']",
+        "Attribute": "connectionString",
+        "value": "__CRMConnectionString__"
+      },
+      {
+        "KeyName": "/connectionStrings/add[@name='billtracking']",
+        "Attribute": "connectionString",
+        "value": "__BillsConnectionString__"
+      },
+      {
+        "KeyName": "/connectionStrings/add[@name='capnotes']",
+        "Attribute": "connectionString",
+        "value": "__CapNotesConnectionString__"
+      },
+      {
+        "KeyName": "/connectionStrings/add[@name='emailyourregion']",
+        "Attribute": "connectionString",
+        "value": "__EmailYourRegionConnectionString__"
+      },
+      {
+        "KeyName": "/connectionStrings/add[@name='legmail']",
+        "Attribute": "connectionString",
+        "value": "__LegMailConnectionString__"
+      },
+      {
+        "KeyName": "/connectionStrings/add[@name='lyris']",
+        "Attribute": "connectionString",
+        "value": "__LyrisConnectionString__"
+      },
+      {
+        "KeyName": "/connectionStrings/add[@name='confac']",
+        "Attribute": "connectionString",
+        "value": "__ConfacConnectionString__"
+      },
+      {
+        "KeyName": "/connectionStrings/add[@name='CRM_MSCRMEntities']",
+        "Attribute": "connectionString",
+        "value": "__CRM_MSCRMEntitiesConnectionString__"
+      },{
+        "KeyName": "/connectionStrings/add[@name='billsEntities']",
+        "Attribute": "connectionString",
+        "value": "__BillsEntitiesConnectionString__"
+      },{
+        "KeyName": "/connectionStrings/add[@name='Xrm']",
+        "Attribute": "connectionString",
+        "value": "__XrmConnectionString__"
+      },
+      {
+        "KeyName": "/sitecore/sites/site[@name='pace']",
+        "Attribute": "indexName",
+        "value": "__PaceIndexName__"
+      },
+      {
+        "KeyName": "/sitecore/sites/site[@name='pace']",
+        "Attribute": "hostname",
+        "value": "__PaceHostName__"
+      },
+      {
+        "KeyName": "/sitecore/sites/site[@name='pace']",
+        "Attribute": "database",
+        "value": "__DeliveryDatabaseName__"
+      },
+      {
+        "KeyName": "/sitecore/sites/site[@name='website']",
+        "Attribute": "hostname",
+        "value": "__OrgHostName__"
+      },
+      {
+        "KeyName": "/sitecore/sites/site[@name='website']",
+        "Attribute": "database",
+        "value": "__DeliveryDatabaseName__"
+      },
+	  {
+	    "KeyName": "/sitecore/sc.variable[@name='dataFolder']",
+        "Attribute": "value",
+        "value": "__DataFolder__"
+	  }
+    ]
+  }
+}
