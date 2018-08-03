@@ -108,7 +108,7 @@
               "includeNuGetOrg": "true",
               "nugetConfigPath": ".nuget\\nuget.config",
               "externalEndpoints": "",
-              "noCache": "false",
+              "noCache": "true",
               "disableParallelProcessing": "false",
               "packagesDirectory": "",
               "verbosityRestore": "Detailed",
