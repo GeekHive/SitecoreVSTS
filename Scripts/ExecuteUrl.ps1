@@ -2,35 +2,55 @@ Param(
     [string]$SiteUrl,
 	[string]$Username,
     [string]$Password,
+    [int]$RepeatInterval,
 	[int]$Timeout = 900, # 15 minutes
-	[int]$ExpectedResult = 200,
-	[bool]$ValidateResult = $false
+	[int]$ConnectionTimeout = 900 # 15 minutes
 )
 
 $currentPath = (Resolve-Path .\).Path
 Write-Host "Current directory: $($currentPath)"
 $executable = "$($currentPath)\curl.exe"
 Write-Host "Exe location: $($executable)"
-
+get-date
 $curlCommand
 if($Username -and $Password){
-	$curlCommand = "'$($executable)' -s -o /dev/null -I -w '%{http_code}' -u $($Username):$($Password) $($SiteUrl) --max-time $Timeout"
+	$curlCommand = "'$($executable)' -sS -u $($Username):$($Password) $($SiteUrl) --connect-timeout $ConnectionTimeout --max-time $Timeout"
 }
 else{
-	$curlCommand = "'$($executable)' -s -o /dev/null -I -w '%{http_code}' $($SiteUrl) --max-time $Timeout"
+	$curlCommand = "'$($executable)' -sS $($SiteUrl) --connect-timeout $ConnectionTimeout --max-time $Timeout"
 }
 
-$result = Invoke-Expression "& $curlCommand" 
+if($RepeatInterval -gt 0)
+{
+	$hitExecutionStage = $FALSE;
+	:forEveryInterval for(;;) {
+	 try {
+		$messages = (Invoke-Expression "& $curlCommand") | ConvertFrom-Json
+		write-host $messages.Status -ForegroundColor Green
+		if($messages.Messages.Length -gt 0)
+		{
+			write-host $messages.Messages[$messages.Messages.Length - 1] -ForegroundColor DarkGray
+			
+			if($messages.Status.Contains("InstallingPackage") -or $messages.Status.Contains("InstallingPostSteps"))
+			{
+				$hitExecutionStage = $TRUE;
+			}
+			if($hitExecutionStage -and $messages.Status.Contains("Ready"))
+			{
+				Write-Host "break"
+				break forEveryInterval;
+			}
+		}
+	 }
+	 catch {
+	  write-host $_
+	 }
 
-Write-Host "Result is: $($result)"
-
-if($ValidateResult){
-	if($result -ne $ExpectedResult)
-	{
-		throw "Web page did not return a valid $($ExpectedResult) response"
+	 Start-Sleep $RepeatInterval
 	}
 }
+else{
+	Invoke-Expression "& $curlCommand"
+}
 
-Write-Host "Exiting"
-
-exit
+get-date
