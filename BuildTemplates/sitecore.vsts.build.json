@@ -231,7 +231,7 @@
             },
             "inputs": {
               "scriptType": "filePath",
-              "scriptName": "$(Build.ArtifactStagingDirectory)\SitecoreVSTS\Scripts\RemoveFiles.ps1",
+              "scriptName": "$(Build.ArtifactStagingDirectory)\SitecoreVSTS\Scripts\Build\Remove TDS Files\RemoveFiles.ps1",
               "arguments": "-pathToPackages \"$(Build.ArtifactStagingDirectory)\\_Packages\\TDS.PROJECT\"",
               "workingFolder": "$(Build.ArtifactStagingDirectory)\\scripts\\",
               "inlineScript": "# You can write your powershell scripts inline here. \n# You can also pass predefined and custom variables to this scripts using arguments\n\n Write-Host \"Hello World\"",
