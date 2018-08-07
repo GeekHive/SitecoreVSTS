@@ -31,10 +31,10 @@ if($RepeatInterval -gt 0)
 		{
 			write-host $messages.Messages[$messages.Messages.Length - 1] -ForegroundColor DarkGray
 			
-			if($messages.Status.Contains("InstallingPackage") -or $messages.Status.Contains("InstallingPostSteps"))
-			{
-				$hitExecutionStage = $TRUE;
-			}
+			if($messages.Status.Equals("Ready") -and $messages.Messages.Length -gt 0)
+            {
+                $hitExecutionStage = $TRUE;
+            }
 			if($hitExecutionStage -and $messages.Status.Contains("Ready"))
 			{
 				Write-Host "break"
