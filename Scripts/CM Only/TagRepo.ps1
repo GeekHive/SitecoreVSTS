@@ -13,9 +13,16 @@ if(!(Test-Path $Location))
 	New-Item -ItemType Directory -Force -Path $Location
 }
 $ReleaseHash = Get-Content $DeltaFile -First 1
+
+
 $cloneCommand = "$($Scheme)://$($Username):$($Password)@$($RepoUrl) '$($Location)'"
 Invoke-Expression "git clone -q $($cloneCommand)"
 Set-Location $($Location)
+
+Invoke-Expression "git config user.name $($Username)"
+Invoke-Expression "git config user.email $($Username)"
+Invoke-Expression "git config user.password $($Password)"
+
 Invoke-Expression "git checkout -q $($ReleaseHash)"
 Invoke-Expression "git tag -d $($TagName)"
 Invoke-Expression "git tag -a $($TagName) -m 'Production Release'"
