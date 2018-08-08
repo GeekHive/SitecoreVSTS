@@ -150,7 +150,7 @@
          "defaultValue":"C:\\agent\\Repo Temp",
          "required":true,
          "type":"string",
-         "helpMarkDown":"",
+         "helpMarkDown":"The temporary location where the repo will be cloned. This directory is removed after the tag is added.",
          "groupName":""
       }
    ],
