@@ -59,10 +59,10 @@
       "allowOverride": true
     },
     "TDS_Key":{  
-	  "value":"bueh-ls3-p5x-hj4n"
+	  "value":"KEY"
     },
     "TDS_OWNER":{  
-	  "value":"Nexus Media Inc."
+	  "value":"OWNER"
     }
   },
   "variableGroups": [],
