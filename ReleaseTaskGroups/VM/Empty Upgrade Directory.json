@@ -1,0 +1,98 @@
+{  
+   "tasks":[  
+      {  
+         "displayName":"Empty Upgrade Directory",
+         "alwaysRun":false,
+         "continueOnError":false,
+         "condition":"succeeded()",
+         "enabled":true,
+         "timeoutInMinutes":0,
+         "inputs":{  
+            "SourceFolder":"$(SitecoreWebRoot)\\temp\\__UpgradeHistory",
+            "Contents":"**"
+         },
+         "task":{  
+            "id":"b7e8b412-0437-4065-9371-edc5881de25b",
+            "versionSpec":"1.*",
+            "definitionType":"task"
+         }
+      }
+   ],
+   "runsOn":[  
+      "Agent",
+      "DeploymentGroup"
+   ],
+   "revision":2,
+   "createdBy":{  
+      "displayName":"John Rappel",
+      "id":"f35bea57-ff22-69de-88c3-4c26ec0bd5b1",
+      "uniqueName":"jrappel@geekhive.com"
+   },
+   "createdOn":"2018-08-03T18:39:35.830Z",
+   "modifiedBy":{  
+      "displayName":"John Rappel",
+      "id":"f35bea57-ff22-69de-88c3-4c26ec0bd5b1",
+      "uniqueName":"jrappel@geekhive.com"
+   },
+   "modifiedOn":"2018-08-07T19:55:18.973Z",
+   "comment":"",
+   "id":"0c9178de-e87d-4d3b-a48d-50ec88f2443e",
+   "name":"Empty Upgrade Directory",
+   "version":{  
+      "major":1,
+      "minor":0,
+      "patch":0,
+      "isTest":false
+   },
+   "iconUrl":"https://cdn.vsassets.io/v/20180802T211316/_content/icon-meta-task.png",
+   "friendlyName":"Empty Upgrade Directory",
+   "description":"",
+   "category":"Deploy",
+   "definitionType":"metaTask",
+   "author":"John Rappel",
+   "demands":[  
+
+   ],
+   "groups":[  
+
+   ],
+   "inputs":[  
+      {  
+         "aliases":[  
+
+         ],
+         "options":{  
+
+         },
+         "properties":{  
+
+         },
+         "name":"SitecoreWebRoot",
+         "label":"SitecoreWebRoot",
+         "defaultValue":"C:\\inetpub\\wwwroot\\Sitecore\\Website",
+         "required":true,
+         "type":"string",
+         "helpMarkDown":"",
+         "groupName":""
+      }
+   ],
+   "satisfies":[  
+
+   ],
+   "sourceDefinitions":[  
+
+   ],
+   "dataSourceBindings":[  
+
+   ],
+   "instanceNameFormat":"Task group: Empty Upgrade Directory",
+   "preJobExecution":{  
+
+   },
+   "execution":{  
+
+   },
+   "postJobExecution":{  
+
+   }
+}

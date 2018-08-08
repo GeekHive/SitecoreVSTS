@@ -1,0 +1,119 @@
+{  
+   "tasks":[  
+      {  
+         "displayName":"Copy Update Packages for SPD",
+         "alwaysRun":false,
+         "continueOnError":false,
+         "condition":"succeeded()",
+         "enabled":true,
+         "timeoutInMinutes":0,
+         "inputs":{  
+            "SourceFolder":"$(System.DefaultWorkingDirectory)\\_Base Build\\drop\\_Packages",
+            "Contents":"$(TDSFolder.TDSProject.update)",
+            "TargetFolder":"$(SPD.DataFolder)",
+            "CleanTargetFolder":"true",
+            "OverWrite":"false",
+            "flattenFolders":"true"
+         },
+         "task":{  
+            "id":"5bfb729a-a7c8-4a78-a7c3-8d717bb7c13c",
+            "versionSpec":"2.*",
+            "definitionType":"task"
+         }
+      }
+   ],
+   "runsOn":[  
+      "Agent",
+      "DeploymentGroup"
+   ],
+   "revision":1,
+   "createdBy":{  
+      "displayName":"John Rappel",
+      "id":"f35bea57-ff22-69de-88c3-4c26ec0bd5b1",
+      "uniqueName":"jrappel@geekhive.com"
+   },
+   "createdOn":"2018-08-07T15:13:01.367Z",
+   "modifiedBy":{  
+      "displayName":"John Rappel",
+      "id":"f35bea57-ff22-69de-88c3-4c26ec0bd5b1",
+      "uniqueName":"jrappel@geekhive.com"
+   },
+   "modifiedOn":"2018-08-07T15:13:01.367Z",
+   "id":"c3b486d1-9592-4d4d-a897-f1f2245d4df1",
+   "name":"Copy Update Packages for SPD",
+   "version":{  
+      "major":1,
+      "minor":0,
+      "patch":0,
+      "isTest":false
+   },
+   "iconUrl":"https://cdn.vsassets.io/v/20180807T033317/_content/icon-meta-task.png",
+   "friendlyName":"Copy Update Packages for SPD",
+   "description":"",
+   "category":"Deploy",
+   "definitionType":"metaTask",
+   "author":"John Rappel",
+   "demands":[  
+
+   ],
+   "groups":[  
+
+   ],
+   "inputs":[  
+      {  
+         "aliases":[  
+
+         ],
+         "options":{  
+
+         },
+         "properties":{  
+
+         },
+         "name":"SPD.DataFolder",
+         "label":"SPD.DataFolder",
+         "defaultValue":"C:\\inetpub\\wwwroot\\Sitecore\\Data\\SitecorePackageDeployer",
+         "required":true,
+         "type":"string",
+         "helpMarkDown":"Target Folder for *.update package consumed by SPD",
+         "groupName":""
+      },
+      {  
+         "aliases":[  
+
+         ],
+         "options":{  
+
+         },
+         "properties":{  
+
+         },
+         "name":"TDSFolder.TDSProject.update",
+         "label":"TDSFolder.TDSProject.update",
+         "defaultValue":"**",
+         "required":true,
+         "type":"multiLine",
+         "helpMarkDown":"File paths to include as part of the copy. Supports multiple lines of match patterns. [More Information](https://go.microsoft.com/fwlink/?LinkID=708389)",
+         "groupName":""
+      }
+   ],
+   "satisfies":[  
+
+   ],
+   "sourceDefinitions":[  
+
+   ],
+   "dataSourceBindings":[  
+
+   ],
+   "instanceNameFormat":"Task group: Copy Update Packages for SPD",
+   "preJobExecution":{  
+
+   },
+   "execution":{  
+
+   },
+   "postJobExecution":{  
+
+   }
+}

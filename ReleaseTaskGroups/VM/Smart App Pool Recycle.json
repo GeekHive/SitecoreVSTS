@@ -1,0 +1,104 @@
+{  
+   "tasks":[  
+      {  
+         "displayName":"Smart AppPool Recycle",
+         "alwaysRun":false,
+         "continueOnError":false,
+         "condition":"succeeded()",
+         "enabled":true,
+         "timeoutInMinutes":0,
+         "inputs":{  
+            "targetType":"filePath",
+            "filePath":"$(System.DefaultWorkingDirectory)\\_Base Build\\drop\\SitecoreVSTS\\Scripts\\All\\recycle-app-pool.ps1",
+            "arguments":"-AppPool $(AppPoolName) -Count 10 -Delay 30000",
+            "script":"",
+            "errorActionPreference":"stop",
+            "failOnStderr":"true",
+            "ignoreLASTEXITCODE":"false",
+            "workingDirectory":"$(System.DefaultWorkingDirectory)\\_Base Build\\drop\\SitecoreVSTS\\Scripts"
+         },
+         "task":{  
+            "id":"e213ff0f-5d5c-4791-802d-52ea3e7be1f1",
+            "versionSpec":"2.*",
+            "definitionType":"task"
+         }
+      }
+   ],
+   "runsOn":[  
+      "Agent",
+      "DeploymentGroup"
+   ],
+   "revision":4,
+   "createdBy":{  
+      "displayName":"John Rappel",
+      "id":"f35bea57-ff22-69de-88c3-4c26ec0bd5b1",
+      "uniqueName":"jrappel@geekhive.com"
+   },
+   "createdOn":"2018-08-03T18:45:58.877Z",
+   "modifiedBy":{  
+      "displayName":"John Rappel",
+      "id":"f35bea57-ff22-69de-88c3-4c26ec0bd5b1",
+      "uniqueName":"jrappel@geekhive.com"
+   },
+   "modifiedOn":"2018-08-07T12:48:57.500Z",
+   "comment":"",
+   "id":"b91965dd-fe7e-464c-bc06-27f12e207d97",
+   "name":"Smart App Pool Recycle",
+   "version":{  
+      "major":1,
+      "minor":0,
+      "patch":0,
+      "isTest":false
+   },
+   "iconUrl":"https://cdn.vsassets.io/v/20180802T211316/_content/icon-meta-task.png",
+   "friendlyName":"Smart App Pool Recycle",
+   "description":"",
+   "category":"Deploy",
+   "definitionType":"metaTask",
+   "author":"John Rappel",
+   "demands":[  
+
+   ],
+   "groups":[  
+
+   ],
+   "inputs":[  
+      {  
+         "aliases":[  
+
+         ],
+         "options":{  
+
+         },
+         "properties":{  
+
+         },
+         "name":"AppPoolName",
+         "label":"AppPoolName",
+         "defaultValue":"(appPoolName)",
+         "required":true,
+         "type":"string",
+         "helpMarkDown":"",
+         "groupName":""
+      }
+   ],
+   "satisfies":[  
+
+   ],
+   "sourceDefinitions":[  
+
+   ],
+   "dataSourceBindings":[  
+
+   ],
+   "instanceNameFormat":"Task group: Smart App Pool Recycle",
+   "preJobExecution":{  
+
+   },
+   "execution":{  
+
+   },
+   "postJobExecution":{  
+
+   }
+}

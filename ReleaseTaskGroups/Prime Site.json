@@ -1,0 +1,140 @@
+{  
+   "tasks":[  
+      {  
+         "displayName":"Prime Site with Basic Auth",
+         "alwaysRun":false,
+         "continueOnError":false,
+         "condition":"succeeded()",
+         "enabled":true,
+         "timeoutInMinutes":0,
+         "inputs":{  
+            "targetType":"filePath",
+            "filePath":"$(System.DefaultWorkingDirectory)\\_Base Build\\drop\\SitecoreVSTS\\Scripts\\All\\Execute Url\\ExecuteUrl.ps1",
+            "arguments":"-SiteUrl '$(primeUrl)' -Username $(BasicAuthUsername) -Password $(BasicAuthPassword)",
+            "script":"",
+            "errorActionPreference":"stop",
+            "failOnStderr":"false",
+            "ignoreLASTEXITCODE":"false",
+            "workingDirectory":"$(System.DefaultWorkingDirectory)\\_Base Build\\drop\\SitecoreVSTS\\Scripts\\All\\Execute Url"
+         },
+         "task":{  
+            "id":"e213ff0f-5d5c-4791-802d-52ea3e7be1f1",
+            "versionSpec":"2.*",
+            "definitionType":"task"
+         }
+      }
+   ],
+   "runsOn":[  
+      "Agent",
+      "DeploymentGroup"
+   ],
+   "revision":3,
+   "createdBy":{  
+      "displayName":"John Rappel",
+      "id":"f35bea57-ff22-69de-88c3-4c26ec0bd5b1",
+      "uniqueName":"jrappel@geekhive.com"
+   },
+   "createdOn":"2018-08-07T14:51:58.303Z",
+   "modifiedBy":{  
+      "displayName":"John Rappel",
+      "id":"f35bea57-ff22-69de-88c3-4c26ec0bd5b1",
+      "uniqueName":"jrappel@geekhive.com"
+   },
+   "modifiedOn":"2018-08-08T15:52:41.723Z",
+   "comment":"",
+   "id":"3d009acf-33ff-42cf-827e-ed34132e316e",
+   "name":"Prime Site with Basic Auth",
+   "version":{  
+      "major":1,
+      "minor":0,
+      "patch":0,
+      "isTest":false
+   },
+   "iconUrl":"https://cdn.vsassets.io/v/20180807T033317/_content/icon-meta-task.png",
+   "friendlyName":"Prime Site with Basic Auth",
+   "description":"",
+   "category":"Deploy",
+   "definitionType":"metaTask",
+   "author":"John Rappel",
+   "demands":[  
+
+   ],
+   "groups":[  
+
+   ],
+   "inputs":[  
+      {  
+         "aliases":[  
+
+         ],
+         "options":{  
+
+         },
+         "properties":{  
+
+         },
+         "name":"BasicAuthPassword",
+         "label":"BasicAuthPassword",
+         "defaultValue":"password",
+         "required":false,
+         "type":"string",
+         "helpMarkDown":"",
+         "groupName":""
+      },
+      {  
+         "aliases":[  
+
+         ],
+         "options":{  
+
+         },
+         "properties":{  
+
+         },
+         "name":"BasicAuthUsername",
+         "label":"BasicAuthUsername",
+         "defaultValue":"username",
+         "required":false,
+         "type":"string",
+         "helpMarkDown":"",
+         "groupName":""
+      },
+      {  
+         "aliases":[  
+
+         ],
+         "options":{  
+
+         },
+         "properties":{  
+
+         },
+         "name":"primeUrl",
+         "label":"primeUrl",
+         "defaultValue":"http://site.name",
+         "required":true,
+         "type":"string",
+         "helpMarkDown":"The target URL to prime the website",
+         "groupName":""
+      }
+   ],
+   "satisfies":[  
+
+   ],
+   "sourceDefinitions":[  
+
+   ],
+   "dataSourceBindings":[  
+
+   ],
+   "instanceNameFormat":"Task group: Prime Site with Basic Auth",
+   "preJobExecution":{  
+
+   },
+   "execution":{  
+
+   },
+   "postJobExecution":{  
+
+   }
+}

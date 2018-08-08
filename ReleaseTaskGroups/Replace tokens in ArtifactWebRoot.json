@@ -1,0 +1,107 @@
+{  
+   "tasks":[  
+      {  
+         "displayName":"Replace tokens in **/*.config",
+         "alwaysRun":false,
+         "continueOnError":false,
+         "condition":"succeeded()",
+         "enabled":true,
+         "timeoutInMinutes":0,
+         "inputs":{  
+            "rootDirectory":"$(ArtifactWebRoot)",
+            "targetFiles":"**/*.config",
+            "encoding":"auto",
+            "writeBOM":"true",
+            "actionOnMissing":"warn",
+            "keepToken":"false",
+            "tokenPrefix":"#{",
+            "tokenSuffix":"}#",
+            "emptyValue":"(empty)",
+            "escapeChar":"",
+            "charsToEscape":""
+         },
+         "task":{  
+            "id":"a8515ec8-7254-4ffd-912c-86772e2b5962",
+            "versionSpec":"2.*",
+            "definitionType":"task"
+         }
+      }
+   ],
+   "runsOn":[  
+      "Agent",
+      "DeploymentGroup"
+   ],
+   "revision":3,
+   "createdBy":{  
+      "displayName":"John Rappel",
+      "id":"f35bea57-ff22-69de-88c3-4c26ec0bd5b1",
+      "uniqueName":"jrappel@geekhive.com"
+   },
+   "createdOn":"2018-08-03T18:35:50.877Z",
+   "modifiedBy":{  
+      "displayName":"John Rappel",
+      "id":"f35bea57-ff22-69de-88c3-4c26ec0bd5b1",
+      "uniqueName":"jrappel@geekhive.com"
+   },
+   "modifiedOn":"2018-08-03T20:12:09.477Z",
+   "comment":"",
+   "id":"52ae1bfd-59e9-48ab-b209-64f9710567e8",
+   "name":"Replace tokens in ArtifactWebRoot",
+   "version":{  
+      "major":1,
+      "minor":0,
+      "patch":0,
+      "isTest":false
+   },
+   "iconUrl":"https://cdn.vsassets.io/v/20180802T211316/_content/icon-meta-task.png",
+   "friendlyName":"Replace tokens in ArtifactWebRoot",
+   "description":"Note: This relies on the Marketplace modules `Replace Tokens` and a prefix of `#{` and suffix of `}#`.",
+   "category":"Deploy",
+   "definitionType":"metaTask",
+   "author":"John Rappel",
+   "demands":[  
+
+   ],
+   "groups":[  
+
+   ],
+   "inputs":[  
+      {  
+         "aliases":[  
+
+         ],
+         "options":{  
+
+         },
+         "properties":{  
+
+         },
+         "name":"ArtifactWebRoot",
+         "label":"ArtifactWebRoot",
+         "defaultValue":"$(System.DefaultWorkingDirectory)\\_Base Build\\drop\\_PublishedWebsites\\(TDS.Project)",
+         "required":true,
+         "type":"filePath",
+         "helpMarkDown":"Base directory for searching files. If not specified the default working directory will be used.",
+         "groupName":""
+      }
+   ],
+   "satisfies":[  
+
+   ],
+   "sourceDefinitions":[  
+
+   ],
+   "dataSourceBindings":[  
+
+   ],
+   "instanceNameFormat":"Task group: Replace tokens in ArtifactWebRoot",
+   "preJobExecution":{  
+
+   },
+   "execution":{  
+
+   },
+   "postJobExecution":{  
+
+   }
+}

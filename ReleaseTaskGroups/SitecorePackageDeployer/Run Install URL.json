@@ -1,0 +1,140 @@
+{  
+   "tasks":[  
+      {  
+         "displayName":"Run Install URL",
+         "alwaysRun":false,
+         "continueOnError":false,
+         "condition":"succeeded()",
+         "enabled":true,
+         "timeoutInMinutes":0,
+         "inputs":{  
+            "targetType":"filePath",
+            "filePath":"$(System.DefaultWorkingDirectory)\\_Base Build\\drop\\SitecoreVSTS\\Scripts\\All\\Execute Url\\ExecuteUrl.ps1",
+            "arguments":"-SiteUrl '$(hostname)/StartSitecorePackageDeployer.aspx?response=json' -Username $(BasicAuthUsername) -Password $(BasicAuthPassword) -RepeatInterval 3",
+            "script":"",
+            "errorActionPreference":"stop",
+            "failOnStderr":"false",
+            "ignoreLASTEXITCODE":"false",
+            "workingDirectory":"$(System.DefaultWorkingDirectory)\\_Base Build\\drop\\SitecoreVSTS\\Scripts\\All\\Execute Url"
+         },
+         "task":{  
+            "id":"e213ff0f-5d5c-4791-802d-52ea3e7be1f1",
+            "versionSpec":"2.*",
+            "definitionType":"task"
+         }
+      }
+   ],
+   "runsOn":[  
+      "Agent",
+      "DeploymentGroup"
+   ],
+   "revision":9,
+   "createdBy":{  
+      "displayName":"John Rappel",
+      "id":"f35bea57-ff22-69de-88c3-4c26ec0bd5b1",
+      "uniqueName":"jrappel@geekhive.com"
+   },
+   "createdOn":"2018-08-03T19:25:11.780Z",
+   "modifiedBy":{  
+      "displayName":"John Rappel",
+      "id":"f35bea57-ff22-69de-88c3-4c26ec0bd5b1",
+      "uniqueName":"jrappel@geekhive.com"
+   },
+   "modifiedOn":"2018-08-07T21:05:10.380Z",
+   "comment":"",
+   "id":"865f1b11-e556-4df0-9ba1-f7e1b3cf4782",
+   "name":"Run Install URL",
+   "version":{  
+      "major":1,
+      "minor":0,
+      "patch":0,
+      "isTest":false
+   },
+   "iconUrl":"https://cdn.vsassets.io/v/20180802T211316/_content/icon-meta-task.png",
+   "friendlyName":"Run Install URL",
+   "description":"Note: Always install the Deploy/Templates package first. Prefix the Update package name with \"1\". SPD consumes the files alphabetically.",
+   "category":"Deploy",
+   "definitionType":"metaTask",
+   "author":"John Rappel",
+   "demands":[  
+
+   ],
+   "groups":[  
+
+   ],
+   "inputs":[  
+      {  
+         "aliases":[  
+
+         ],
+         "options":{  
+
+         },
+         "properties":{  
+
+         },
+         "name":"BasicAuthPassword",
+         "label":"BasicAuthPassword",
+         "defaultValue":"a1!",
+         "required":false,
+         "type":"string",
+         "helpMarkDown":"",
+         "groupName":""
+      },
+      {  
+         "aliases":[  
+
+         ],
+         "options":{  
+
+         },
+         "properties":{  
+
+         },
+         "name":"BasicAuthUsername",
+         "label":"BasicAuthUsername",
+         "defaultValue":"visitor",
+         "required":false,
+         "type":"string",
+         "helpMarkDown":"",
+         "groupName":""
+      },
+      {  
+         "aliases":[  
+
+         ],
+         "options":{  
+
+         },
+         "properties":{  
+
+         },
+         "name":"hostname",
+         "label":"hostname",
+         "defaultValue":"http://site.name",
+         "required":true,
+         "type":"string",
+         "helpMarkDown":"",
+         "groupName":""
+      }
+   ],
+   "satisfies":[  
+
+   ],
+   "sourceDefinitions":[  
+
+   ],
+   "dataSourceBindings":[  
+
+   ],
+   "instanceNameFormat":"Task group: Run Install URL",
+   "preJobExecution":{  
+
+   },
+   "execution":{  
+
+   },
+   "postJobExecution":{  
+
+   }
+}

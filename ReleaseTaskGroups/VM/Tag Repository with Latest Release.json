@@ -1,0 +1,176 @@
+{  
+   "tasks":[  
+      {  
+         "displayName":"Tag Repository with Latest Release",
+         "alwaysRun":false,
+         "continueOnError":true,
+         "condition":"succeeded()",
+         "enabled":true,
+         "timeoutInMinutes":0,
+         "inputs":{  
+            "targetType":"filePath",
+            "filePath":"$(System.DefaultWorkingDirectory)\\_Base Build\\drop\\SitecoreVSTS\\Scripts\\CM Only\\TagRepo.ps1",
+            "arguments":"-RepoUrl \"$(RepoUrl)\" -Username $(RepoUsername) -Password $(RepoPassword) -Location \"$(TempRepoLocation)\" -DeltaFile \"$(DeltaFileLocation)\"",
+            "script":"# Write your powershell commands here.\n\nWrite-Host \"Hello World\"\n\n# Use the environment variables input below to pass secret variables to this script.",
+            "errorActionPreference":"stop",
+            "failOnStderr":"false",
+            "ignoreLASTEXITCODE":"false",
+            "workingDirectory":"$(System.DefaultWorkingDirectory)\\_Base Build\\drop\\SitecoreVSTS\\Scripts\\CM Only"
+         },
+         "task":{  
+            "id":"e213ff0f-5d5c-4791-802d-52ea3e7be1f1",
+            "versionSpec":"2.*",
+            "definitionType":"task"
+         }
+      }
+   ],
+   "runsOn":[  
+      "Agent",
+      "DeploymentGroup"
+   ],
+   "revision":5,
+   "createdBy":{  
+      "displayName":"John Rappel",
+      "id":"f35bea57-ff22-69de-88c3-4c26ec0bd5b1",
+      "uniqueName":"jrappel@geekhive.com"
+   },
+   "createdOn":"2018-08-07T15:35:25.520Z",
+   "modifiedBy":{  
+      "displayName":"John Rappel",
+      "id":"f35bea57-ff22-69de-88c3-4c26ec0bd5b1",
+      "uniqueName":"jrappel@geekhive.com"
+   },
+   "modifiedOn":"2018-08-07T20:40:27.007Z",
+   "comment":"",
+   "id":"5c1babd5-7386-42fe-a8dd-bea5e0dd8ef6",
+   "name":"Tag Repository with Latest Release",
+   "version":{  
+      "major":1,
+      "minor":0,
+      "patch":0,
+      "isTest":false
+   },
+   "iconUrl":"https://cdn.vsassets.io/v/20180807T033317/_content/icon-meta-task.png",
+   "friendlyName":"Tag Repository with Latest Release",
+   "description":"MUST INSTALL GIT ON THE SERVER THAT EXECUTES THIS TASK\n* Also dependent on GitDeltaDeploy being installed and used\n* Intentionally set to continue on error, if it errors, set the Tag manually",
+   "category":"Deploy",
+   "definitionType":"metaTask",
+   "author":"John Rappel",
+   "demands":[  
+
+   ],
+   "groups":[  
+
+   ],
+   "inputs":[  
+      {  
+         "aliases":[  
+
+         ],
+         "options":{  
+
+         },
+         "properties":{  
+
+         },
+         "name":"DeltaFileLocation",
+         "label":"DeltaFileLocation",
+         "defaultValue":"$(System.DefaultWorkingDirectory)\\_Base Build\\drop\\Delta\\LastDeploymentGitCommitId.txt",
+         "required":true,
+         "type":"string",
+         "helpMarkDown":"",
+         "groupName":""
+      },
+      {  
+         "aliases":[  
+
+         ],
+         "options":{  
+
+         },
+         "properties":{  
+
+         },
+         "name":"RepoPassword",
+         "label":"RepoPassword",
+         "defaultValue":"<use a secure variable to hold this>",
+         "required":true,
+         "type":"string",
+         "helpMarkDown":"",
+         "groupName":""
+      },
+      {  
+         "aliases":[  
+
+         ],
+         "options":{  
+
+         },
+         "properties":{  
+
+         },
+         "name":"RepoUrl",
+         "label":"RepoUrl",
+         "defaultValue":"project.visualstudio.com/_git/projectname",
+         "required":true,
+         "type":"string",
+         "helpMarkDown":"",
+         "groupName":""
+      },
+      {  
+         "aliases":[  
+
+         ],
+         "options":{  
+
+         },
+         "properties":{  
+
+         },
+         "name":"RepoUsername",
+         "label":"RepoUsername",
+         "defaultValue":"name%40email.com",
+         "required":true,
+         "type":"string",
+         "helpMarkDown":"",
+         "groupName":""
+      },
+      {  
+         "aliases":[  
+
+         ],
+         "options":{  
+
+         },
+         "properties":{  
+
+         },
+         "name":"TempRepoLocation",
+         "label":"TempRepoLocation",
+         "defaultValue":"C:\\agent\\Repo Temp",
+         "required":true,
+         "type":"string",
+         "helpMarkDown":"",
+         "groupName":""
+      }
+   ],
+   "satisfies":[  
+
+   ],
+   "sourceDefinitions":[  
+
+   ],
+   "dataSourceBindings":[  
+
+   ],
+   "instanceNameFormat":"Task group: Tag Repository with Latest Release",
+   "preJobExecution":{  
+
+   },
+   "execution":{  
+
+   },
+   "postJobExecution":{  
+
+   }
+}
