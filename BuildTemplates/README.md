@@ -28,8 +28,50 @@ From a VSTS instance:
     1. No folder selection is required.
     2. No comment is required.
 	
+This build template assumed you will be using **TDS Classic** and enable **Update Packages** (preferrably of _Items Only_) for your deployment. It also assumes that the output of the TDS project (targeted Web Project) is used as the primary artifact to promote to all environments. _The TDS Classic output of the web project produces more consistent configuration transformations._
+	
 ### Variables on Build Template
 
-#### Build Platform
-*   Value: Any CPU
+#### BuildPlatform
+*   Default Value: Any CPU
 *   This will likely not change
+
+#### BuildConfiguration
+*   Default Value: Release
+*   This is the Solution Configuration you are targeting for VSTS builds. Release is _preferred_, though another may be accurate for your instance.
+
+#### CullProjectFiles
+*   Default Value: False
+*   Possible Values: True or False
+*   This is used with GitDeltaDeploys. It reduces the number of files included in the output to only changed files depending on GitDeltaDeploy configuration.
+
+#### EnableGitDeltaDeploy
+*   Default Value: False
+*   Possible Values: True or False
+*   To use this setting, be sure to add the [GitDeltaDeploy NuGet package](https://www.nuget.org/packages/Hedgehog.TDS.BuildExtensions.GitDeltaDeploy/) to all TDS projects. 
+
+#### LastDeploymentGitTagname
+*   Default Value: "ProductionRelease"
+*   This is the tag that GitDeltaDeploy will reference when it performs it's delta of items and files. It will only include changed items/files between the current build and the commit with this tag.
+
+#### LastProductionReleaseCommitId
+*   Default Value: (none)
+*   Instead of using the **LastDeploymentGitTagname**, you may instead wish to target a specific commit. Note: You will need to update the MS Build arguments to use a commit id instead of a tag name.
+
+#### system.debug
+*   Default Value: true
+*   Possible Values: true or false
+*   If true, this increases the verbosity of the build log output.
+
+#### TDS_Key
+*   Value: "KEY"
+*   Enter your organizations TDS Classic Key in this field to allow the build server to perform a build via TDS Classic.
+
+#### TDS_OWNER
+*   Value: "OWNER"
+*   Enter your organizations TDS Classic Owner in this field to allow the build server to perform a build via TDS Classic.
+
+### Build Steps (Build Sitecore Solution)
+
+#### Download GeekHive Scripts
+*   This is an inline PowerShell script that pulls down the contents of https://github.com/GeekHive/SitecoreVSTS for use on the build. This step is **critical** if you wish to use these scripts further in the process: in further Build Steps or with the templated [Release Task Groups](ReleaseTaskGroups/README.md).
