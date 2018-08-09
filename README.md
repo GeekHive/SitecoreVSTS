@@ -1,6 +1,8 @@
 # Sitecore VSTS Templates
 This repository contains various build and release templates to jumpstart a Sitecore deployment configuration on Visual Studio Online (VSTS).
 
+## First Step
+
 **! Clone/fork this repository to your local machine in order to import the definitions !**
 
 ## Import Build Template into VSTS Project
@@ -32,3 +34,9 @@ From a VSTS instance:
 11. Click **"Save & queue > Save"**
     1. No folder selection is required.
     2. No comment is required.
+	
+### Variables on Build Template
+
+#### Build Platform
+*   Value: Any CPU
+*   This will likely not change
