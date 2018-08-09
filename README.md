@@ -9,3 +9,7 @@ This repository contains various build and release templates to jumpstart a Site
 
 [View the README.md](BuildTemplates/README.md)
 
+## Import Release Task Groups into VSTS Project
+
+[View the README.md](ReleaseTaskGroups/README.md)
+

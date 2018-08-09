@@ -94,7 +94,7 @@ Note the **Parameters**. The "Path to solution or packages.config" defaults to *
 
 #### Download GeekHive Scripts
 *   Fields: No fields require attention.
-*   This is an inline PowerShell script that pulls down the contents of https://github.com/GeekHive/SitecoreVSTS for use on the build. This step is **critical** if you wish to use these scripts further in the process: in further Build Steps or with the templated [Release Task Groups](ReleaseTaskGroups/README.md).
+*   This is an inline PowerShell script that pulls down the contents of https://github.com/GeekHive/SitecoreVSTS for use on the build. This step is **critical** if you wish to use these scripts further in the process: in further Build Steps or with the templated [Release Task Groups](../ReleaseTaskGroups/README.md).
 
 #### NuGet restore \*\*\\*.sln
 *   Fields: Likely that no fields require attention.
