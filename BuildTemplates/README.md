@@ -45,42 +45,45 @@ Note the **Parameters**. The "Path to solution or packages.config" defaults to *
 <details><summary>Click to toggle contents...</summary>
 
 #### BuildPlatform
-*   Default Value: Any CPU
+*   Default Value: **Any CPU**
 *   This will likely not change
 
 #### BuildConfiguration
-*   Default Value: Release
+*   Default Value: **Release**
 *   This is the Solution Configuration you are targeting for VSTS builds. Release is _preferred_, though another may be accurate for your instance.
 
 #### CullProjectFiles
-*   Default Value: False
+*   Default Value: **False**
+*   Dependent on: **EnableGitDeltaDeploy**
 *   Possible Values: True or False
 *   This is used with GitDeltaDeploys. It reduces the number of files included in the output to only changed files depending on GitDeltaDeploy configuration.
 
 #### EnableGitDeltaDeploy
-*   Default Value: False
+*   Default Value: **False**
 *   Possible Values: True or False
 *   To use this setting, be sure to add the [GitDeltaDeploy NuGet package](https://www.nuget.org/packages/Hedgehog.TDS.BuildExtensions.GitDeltaDeploy/) to all TDS projects. 
 
 #### LastDeploymentGitTagname
-*   Default Value: "ProductionRelease"
+*   Default Value: **"ProductionRelease"**
+*   Dependent on: **EnableGitDeltaDeploy**
 *   This is the tag that GitDeltaDeploy will reference when it performs it's delta of items and files. It will only include changed items/files between the current build and the commit with this tag.
 
 #### LastProductionReleaseCommitId
-*   Default Value: (none)
+*   Default Value: **(none)**
+*   Dependent on: **EnableGitDeltaDeploy**
 *   Instead of using the **LastDeploymentGitTagname**, you may instead wish to target a specific commit. Note: You will need to update the MS Build arguments to use a commit id instead of a tag name.
 
 #### system.debug
-*   Default Value: true
+*   Default Value: **true**
 *   Possible Values: true or false
 *   If true, this increases the verbosity of the build log output.
 
 #### TDS_Key
-*   Value: "KEY"
+*   Default Value: **"KEY"**
 *   Enter your organizations TDS Classic Key in this field to allow the build server to perform a build via TDS Classic.
 
 #### TDS_OWNER
-*   Value: "OWNER"
+*   Default Value: **"OWNER"**
 *   Enter your organizations TDS Classic Owner in this field to allow the build server to perform a build via TDS Classic.
 
 </details>
