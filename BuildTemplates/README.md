@@ -1,7 +1,7 @@
 [<< Back to main README.md](../README.md)
 
 ## Import Build Template into VSTS Project
-
+<details><summary>Click to expand...</summary>
 From a VSTS instance:
 
 1. First, you need to get the **Project ID**.
@@ -31,6 +31,7 @@ From a VSTS instance:
     2. No comment is required.
 	
 This build template assumed you will be using **TDS Classic** and enable **Update Packages** (preferrably of _Items Only_) for your deployment. It also assumes that the output of the TDS project (targeted Web Project) is used as the primary artifact to promote to all environments. _The TDS Classic output of the web project produces more consistent configuration transformations._
+</details>
 	
 ### Variables on Build Template
 
