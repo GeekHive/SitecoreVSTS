@@ -100,7 +100,7 @@ Note the **Parameters**. The "Path to solution or packages.config" defaults to *
 *   Fields: Likely that no fields require attention.
 *   This pulls in all NuGet packages based on the individual **packages.config** files referenced by each project.
 
-#### Build solution \*\*\\.sln
+#### Build solution \*\*\\*.sln
 *   Fields: 
     *   Visual Studio Version
 	    *   Default Value: Visual Studio 2017
