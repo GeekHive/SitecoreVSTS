@@ -1,6 +1,7 @@
 [<< Back to main README.md](../README.md)
 
 ## Import Build Template into VSTS Project
+
 <details><summary>Click to toggle contents...</summary>
 From a VSTS instance:
 
@@ -34,6 +35,7 @@ This build template assumed you will be using **TDS Classic** and enable **Updat
 </details>
 	
 ### Variables on Build Template
+
 <details><summary>Click to toggle contents...</summary>
 #### BuildPlatform
 *   Default Value: Any CPU
@@ -74,7 +76,9 @@ This build template assumed you will be using **TDS Classic** and enable **Updat
 *   Value: "OWNER"
 *   Enter your organizations TDS Classic Owner in this field to allow the build server to perform a build via TDS Classic.
 </details>
+
 ### Build Steps (Build Sitecore Solution)
+
 <details><summary>Click to toggle contents...</summary>
 #### Download GeekHive Scripts
 *   This is an inline PowerShell script that pulls down the contents of https://github.com/GeekHive/SitecoreVSTS for use on the build. This step is **critical** if you wish to use these scripts further in the process: in further Build Steps or with the templated [Release Task Groups](ReleaseTaskGroups/README.md).
