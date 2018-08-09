@@ -99,19 +99,34 @@ Note the **Parameters**. The "Path to solution or packages.config" defaults to *
 
 #### Build solution \*\*\\.sln
 *   Fields: 
-    *   test
-*   
+    *   Visual Studio Version
+	    *   Default Value: Visual Studio 2017
+	    *   If you are building our your project on an earlier version, update to be correct.
+	*   MSBuild Arguments
+	    *   Default Value: /p:OutDir=$(Build.ArtifactStagingDirectory) /p:SkipInvalidConfigurations=true /p:LastDeploymentGitTagName=$(LastDeploymentGitTagName) /p:CustomGitDeltaDeploy=$(EnableGitDeltaDeploy) /p:CullProjectFiles=$(CullProjectFiles)
+		*   Most of the arguments are driven by Build Variables, but you may want to modify "LastDeploymentGitTagName=$(LastDeploymentGitTagName)" if you instead choose to use "LastDeploymentGitCommitID=&(LastProductionReleaseCommitId)" instead and then update the Build Variable "LastProductionReleaseCommitId". If GitDeltaDeploy is not used, clear the LastDeployment* variables values and set "EnableGitDeltaDeploy" to "False".
+*   This task builds the solution. Note, we typically rely on the output of the TDS project that points to the primary Web Project as our promoted build output.
 
 #### Delete files from $(Build.ArtifactStagingDirectory)
 *   Fields: 
-*   
+    *   Contents
+	    *   Default Value: *.dll *.pdb *.config *.xml App_Config
+	    *   Enter the files you wish to remove from the promoted build artifact.
+*   This task simply cuts down on the size of the promoted artifact. It isn't critical, but makes for a more slimmed down artifact.
 
 #### Remove Files From TDS Package
 *   Fields: 
-*   
+    *   Script Path
+	    *   Default Value: $(Build.ArtifactStagingDirectory)\SitecoreVSTS\Scripts\Build\Remove TDS Files\RemoveFiles.ps1
+	    *   The path to the **RemoveFiles.ps1** script. 
+		*   **Note: if the "Download GeekHive Scripts" task is used, this field does not need to be modified.
+	*   Arguments
+	    *   Default Value: -pathToPackages "$(Build.ArtifactStagingDirectory)\_Packages\TDS.Project"
+		*   Modify the **TDS.Project** portion of the Arguments field to point to the relevant TDS Project.
+*   You will likely have 1 or more of  these tasks. One is required for each TDS project unless a bundling is configured.
 
 #### Publish Artifact: drop
-*   Fields: 
-*   
+*   Fields: Likely that no fields require attention.
+*   This step promotes the artifacts to VSTS cloud for later consumption by Release Tasks, per environment.
 
 </details>
