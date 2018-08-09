@@ -1,4 +1,4 @@
-[<< Back to main README.md](SitecoreVSTS/README.md)
+[<< Back to main README.md](../README.md)
 
 ## Import Build Template into VSTS Project
 
