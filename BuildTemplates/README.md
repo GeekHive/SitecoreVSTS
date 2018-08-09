@@ -3,6 +3,7 @@
 ## Import Build Template into VSTS Project
 
 <details><summary>Click to toggle contents...</summary>
+
 From a VSTS instance:
 
 1. First, you need to get the **Project ID**.
@@ -32,11 +33,13 @@ From a VSTS instance:
     2. No comment is required.
 	
 This build template assumed you will be using **TDS Classic** and enable **Update Packages** (preferrably of _Items Only_) for your deployment. It also assumes that the output of the TDS project (targeted Web Project) is used as the primary artifact to promote to all environments. _The TDS Classic output of the web project produces more consistent configuration transformations._
+
 </details>
 	
 ### Variables on Build Template
 
 <details><summary>Click to toggle contents...</summary>
+
 #### BuildPlatform
 *   Default Value: Any CPU
 *   This will likely not change
@@ -75,11 +78,14 @@ This build template assumed you will be using **TDS Classic** and enable **Updat
 #### TDS_OWNER
 *   Value: "OWNER"
 *   Enter your organizations TDS Classic Owner in this field to allow the build server to perform a build via TDS Classic.
+
 </details>
 
 ### Build Steps (Build Sitecore Solution)
 
 <details><summary>Click to toggle contents...</summary>
+
 #### Download GeekHive Scripts
 *   This is an inline PowerShell script that pulls down the contents of https://github.com/GeekHive/SitecoreVSTS for use on the build. This step is **critical** if you wish to use these scripts further in the process: in further Build Steps or with the templated [Release Task Groups](ReleaseTaskGroups/README.md).
+
 </details>
