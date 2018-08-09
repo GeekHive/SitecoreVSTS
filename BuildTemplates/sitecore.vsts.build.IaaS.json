@@ -123,7 +123,7 @@
             "enabled": true,
             "continueOnError": false,
             "alwaysRun": false,
-            "displayName": "NuGet restore **/*.sln",
+            "displayName": "NuGet restore **\\*.sln",
             "timeoutInMinutes": 0,
             "condition": "succeeded()",
             "refName": "NuGetInstaller_1",

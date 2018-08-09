@@ -35,7 +35,11 @@ From a VSTS instance:
 This build template assumed you will be using **TDS Classic** and enable **Update Packages** (preferrably of _Items Only_) for your deployment. It also assumes that the output of the TDS project (targeted Web Project) is used as the primary artifact to promote to all environments. _The TDS Classic output of the web project produces more consistent configuration transformations._
 
 </details>
-	
+
+### Build Process
+
+Note the **Parameters**. The "Path to solution or packages.config" defaults to **\*\*\\*.sln** and "Artifact Name" defaults to **drop**. These are *linked* to some of the Build Tasks.
+
 ### Variables on Build Template
 
 <details><summary>Click to toggle contents...</summary>
@@ -86,6 +90,28 @@ This build template assumed you will be using **TDS Classic** and enable **Updat
 <details><summary>Click to toggle contents...</summary>
 
 #### Download GeekHive Scripts
+*   Fields: No fields require attention.
 *   This is an inline PowerShell script that pulls down the contents of https://github.com/GeekHive/SitecoreVSTS for use on the build. This step is **critical** if you wish to use these scripts further in the process: in further Build Steps or with the templated [Release Task Groups](ReleaseTaskGroups/README.md).
+
+#### NuGet restore \*\*\\*.sln
+*   Fields: Likely that no fields require attention.
+*   This pulls in all NuGet packages based on the individual **packages.config** files referenced by each project.
+
+#### Build solution \*\*\\.sln
+*   Fields: 
+    *   test
+*   
+
+#### Delete files from $(Build.ArtifactStagingDirectory)
+*   Fields: 
+*   
+
+#### Remove Files From TDS Package
+*   Fields: 
+*   
+
+#### Publish Artifact: drop
+*   Fields: 
+*   
 
 </details>
