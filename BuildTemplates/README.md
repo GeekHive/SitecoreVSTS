@@ -1,5 +1,7 @@
 [<< Back to main README.md](../README.md)
 
+The Build Templates allow you to quickly frame up a full build, with many bells and whistles prepackages. Only a few properties need to be updated after importing the Build Template.
+
 ## Import Build Template into VSTS Project
 
 <details><summary>Click to toggle contents...</summary>
@@ -39,6 +41,8 @@ This build template assumed you will be using **TDS Classic** and enable **Updat
 ### Build Process
 
 Note the **Parameters**. The "Path to solution or packages.config" defaults to **\*\*\\*.sln** and "Artifact Name" defaults to **drop**. These are *linked* to some of the Build Tasks.
+
+![Build Parameters](../ReadMeImages/BuildParameters.png)
 
 ### Variables on Build Template
 
