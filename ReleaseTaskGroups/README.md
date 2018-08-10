@@ -123,12 +123,12 @@ Task Groups are extremely similar to Marketplace modules except they don't need 
 	    *   Default Value: **\*\*/\*.config
 		*   This likely does not need to change. It targets all config files for replacement values.
 	*   Token prefix
-	    *   Default Value: **#{**
+	    *   Default Value: **\#\{**
 		*   This is likely the proper value, however if you are targeting replacements in a different way, update this value.
 	*   Token suffix
-	    *   Default Value: **}#**
+	    *   Default Value: **\}\#**
 		*   This is likely the proper value, however if you are targeting replacements in a different way, update this value.
-*   This task replaces tokens in config files. For example, if you are transforming a *.Release.config with a value of **#{WebDatabaseConnectionString}#**, this task will review Release Variables for any match for the specific environment for **WebDatabaseConnectionString** and include the proper value.
+*   This task replaces tokens in config files. For example, if you are transforming a *.Release.config with a value of **\#\{WebDatabaseConnectionString\}\#**, this task will review Release Variables for any match for the specific environment for **WebDatabaseConnectionString** and include the proper value.
 
 ---
 
