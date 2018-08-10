@@ -182,7 +182,7 @@ Task Groups are extremely similar to Marketplace modules except they don't need 
 	    *   Default Value: **$(System.DefaultWorkingDirectory)\_Base Build\drop\Delta\LastDeploymentGitCommitId.txt**
 		*   The path "_Base Build" is dependent on the name of your build. If the Build Template is used, it should default to "_Base Build".
 	*   RepoPassword
-	    *   Default Value: **\<use a secure variable to hold this\>**
+	    *   Default Value: **(none), \<use a secure variable to hold this\>**
 		*   ***Use a secure VSTS Release Variable to hold the repository password.***
 	*   RepoUrl
 	    *   Default Value: **project.visualstudio.com/_git/projectname**
