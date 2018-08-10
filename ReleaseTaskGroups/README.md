@@ -182,7 +182,7 @@ Task Groups are extremely similar to Marketplace modules except they don't need 
 	    *   Default Value: **$(System.DefaultWorkingDirectory)\_Base Build\drop\Delta\LastDeploymentGitCommitId.txt**
 		*   The path "_Base Build" is dependent on the name of your build. If the Build Template is used, it should default to "_Base Build".
 	*   RepoPassword
-	    *   Default Value: **<use a secure variable to hold this>**
+	    *   Default Value: **\<use a secure variable to hold this\>**
 		*   ***Use a secure VSTS Release Variable to hold the repository password.***
 	*   RepoUrl
 	    *   Default Value: **project.visualstudio.com/_git/projectname**
@@ -204,7 +204,7 @@ Task Groups are extremely similar to Marketplace modules except they don't need 
 	    *   Default Value: **$(System.DefaultWorkingDirectory)\_Base Build\drop\SitecoreVSTS\Scripts\CM Only**
 		*   Potential Changes: The path "_Base Build" is dependent on the name of your build. If the Build Template is used, it should default to "_Base Build".
 	*   Continue on error (Control Options Section)
-	    *   Default Value: **<checked>**
+	    *   Default Value: **\<checked\>**
 		*   Potential Changes: Because this task can fail when GitDeltaDeploy is not enabled for a build, it intentionally continues on error.
 *   This task automatically tags the current commit with the tag **"ProductionRelease"**. This enables GitDeltaDeploy to be fully automated. Only run this task on a CM server as part of a CD deployment. **See image below for executing a CM agent from a CD Task.**
 
