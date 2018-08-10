@@ -1,9 +1,13 @@
+Param(
+    [string]$pathToPackages
+)
+
 [Reflection.Assembly]::LoadWithPartialName('System.IO.Compression')
 [Reflection.Assembly]::LoadWithPartialName('System.IO.Compression.FileSystem')
 
 Write-Host "Removing all bin files from folder"
 
-Get-ChildItem -Path $Destination -Recurse -Filter "*.update" | ForEach-Object {
+Get-ChildItem -Path $pathToPackages -Recurse -Filter "*.update" | ForEach-Object {
 	$zipfile = $_.FullName
 	Write-Host "Removing bin from $zipFile"
 	$stream = New-Object IO.FileStream($zipfile, [IO.FileMode]::Open)
