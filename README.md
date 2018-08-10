@@ -1,5 +1,5 @@
 # Sitecore VSTS Templates
-This repository contains various build and release templates to jumpstart a Sitecore deployment configuration on Visual Studio Online (VSTS).
+This repository contains various build and release templates to jump-start a Sitecore deployment configuration on Visual Studio Online (VSTS).
 
 ## First Step
 
