@@ -51,13 +51,19 @@ Note the **Parameters**. The "Path to solution or packages.config" defaults to *
 
 ![Build Variables](../ReadMeImages/BuildVariables.png)
 
+---
+
 #### BuildPlatform
 *   Default Value: **Any CPU**
 *   This will likely not change
 
+---
+
 #### BuildConfiguration
 *   Default Value: **Release**
 *   This is the Solution Configuration you are targeting for VSTS builds. Release is _preferred_, though another may be accurate for your instance.
+
+---
 
 #### CullProjectFiles
 *   Default Value: **False**
@@ -65,33 +71,47 @@ Note the **Parameters**. The "Path to solution or packages.config" defaults to *
 *   Possible Values: True or False
 *   This is used with GitDeltaDeploys. It reduces the number of files included in the output to only changed files depending on GitDeltaDeploy configuration.
 
+---
+
 #### EnableGitDeltaDeploy
 *   Default Value: **False**
 *   Possible Values: True or False
 *   To use this setting, be sure to add the [GitDeltaDeploy NuGet package](https://www.nuget.org/packages/Hedgehog.TDS.BuildExtensions.GitDeltaDeploy/) to all TDS projects. 
+
+---
 
 #### LastDeploymentGitTagname
 *   Default Value: **"ProductionRelease"**
 *   Dependent on: **EnableGitDeltaDeploy**
 *   This is the tag that GitDeltaDeploy will reference when it performs it's delta of items and files. It will only include changed items/files between the current build and the commit with this tag.
 
+---
+
 #### LastProductionReleaseCommitId
 *   Default Value: **(none)**
 *   Dependent on: **EnableGitDeltaDeploy**
 *   Instead of using the **LastDeploymentGitTagname**, you may instead wish to target a specific commit. Note: You will need to update the MS Build arguments to use a commit id instead of a tag name.
+
+---
 
 #### system.debug
 *   Default Value: **true**
 *   Possible Values: true or false
 *   If true, this increases the verbosity of the build log output.
 
+---
+
 #### TDS_Key
 *   Default Value: **"KEY"**
 *   Enter your organizations TDS Classic Key in this field to allow the build server to perform a build via TDS Classic.
 
+---
+
 #### TDS_OWNER
 *   Default Value: **"OWNER"**
 *   Enter your organizations TDS Classic Owner in this field to allow the build server to perform a build via TDS Classic.
+
+---
 
 </details>
 
@@ -101,13 +121,19 @@ Note the **Parameters**. The "Path to solution or packages.config" defaults to *
 
 ![Build Steps](../ReadMeImages/BuildSteps.png)
 
+---
+
 #### Download GeekHive Scripts
 *   Fields: No fields require attention.
 *   This is an inline PowerShell script that pulls down the contents of https://github.com/GeekHive/SitecoreVSTS for use on the build. This step is **critical** if you wish to use these scripts further in the process: in further Build Steps or with the templated [Release Task Groups](../ReleaseTaskGroups/README.md).
 
+---
+
 #### NuGet restore \*\*\\*.sln
 *   Fields: Likely that no fields require attention.
 *   This pulls in all NuGet packages based on the individual **packages.config** files referenced by each project.
+
+---
 
 #### Build solution \*\*\\*.sln
 *   Fields: 
@@ -119,12 +145,16 @@ Note the **Parameters**. The "Path to solution or packages.config" defaults to *
 		*   Most of the arguments are driven by Build Variables, but you may want to modify "LastDeploymentGitTagName=$(LastDeploymentGitTagName)" if you instead choose to use "LastDeploymentGitCommitID=&(LastProductionReleaseCommitId)" instead and then update the Build Variable "LastProductionReleaseCommitId". If GitDeltaDeploy is not used, clear the LastDeployment* variables values and set "EnableGitDeltaDeploy" to "False".
 *   This task builds the solution. Note, we typically rely on the output of the TDS project that points to the primary Web Project as our promoted build output.
 
+---
+
 #### Delete files from $(Build.ArtifactStagingDirectory)
 *   Fields: 
     *   Contents
 	    *   Default Value: *.dll *.pdb *.config *.xml App_Config
 	    *   Enter the files you wish to remove from the promoted build artifact.
 *   This task simply cuts down on the size of the promoted artifact. It isn't critical, but makes for a more slimmed down artifact.
+
+---
 
 #### Remove Files From TDS Package
 *   Fields: 
@@ -137,8 +167,12 @@ Note the **Parameters**. The "Path to solution or packages.config" defaults to *
 		*   Modify the **TDS.Project** portion of the Arguments field to point to the relevant TDS Project.
 *   You will likely have 1 or more of  these tasks. One is required for each TDS project unless a bundling is configured.
 
+---
+
 #### Publish Artifact: drop
 *   Fields: Likely that no fields require attention.
 *   This step promotes the artifacts to VSTS cloud for later consumption by Release Tasks, per environment.
+
+---
 
 </details>

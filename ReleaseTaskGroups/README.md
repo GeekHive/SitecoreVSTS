@@ -24,6 +24,8 @@ Task Groups are extremely similar to Marketplace modules except they don't need 
 
 <details><summary>Click to toggle contents...</summary>
 
+---
+
 #### Copy .Net 4.5 SPD Scripts
 *   Dependent on: **Download GeekHive Scripts** Build Task, .Net 4.5 web project
 *   Parameters: 
@@ -35,6 +37,8 @@ Task Groups are extremely similar to Marketplace modules except they don't need 
 		*   Potential Changes: The path "_Base Build" is dependent on the name of your build. If the Build Template is used, it should default to "_Base Build".
 *   This task copies all required code and config files to execute Sitecore Package Deployer to the web root.
 
+---
+
 #### Copy Files to Sitecore Web Root
 *   Dependent on: N/A
 *   Parameters: 
@@ -45,6 +49,8 @@ Task Groups are extremely similar to Marketplace modules except they don't need 
 		*   Update the **Default Value** to match your build artifact output.
 *   Notable Properties: N/A
 *   This task copies TDS Classic build output to the web root. This will be the compiled website.
+
+---
 
 #### Copy Update Packages for SPD
 *   Dependent on: TDS Classic Update Packages
@@ -60,6 +66,8 @@ Task Groups are extremely similar to Marketplace modules except they don't need 
 		*   Potential Changes: The path "_Base Build" is dependent on the name of your build. If the Build Template is used, it should default to "_Base Build".
 *   This task copies all listed TDS Update Packages to the Sitecore Package Deployer folder.
 
+---
+
 #### Delete files pre-Deploy
 *   Dependent on: N/A
 *   Parameters: 
@@ -71,6 +79,8 @@ Task Groups are extremely similar to Marketplace modules except they don't need 
 *   Notable Properties: N/A
 *   This task simply removes any files not needed for a particular environment prior to copying the contents of the webroot. For example, a CD environment may need particular files removed prior to copying.
 
+---
+
 #### Empty Upgrade Directory
 *   Dependent on: N/A
 *   Parameters: 
@@ -78,6 +88,8 @@ Task Groups are extremely similar to Marketplace modules except they don't need 
 	    *   Default Value: **C:\inetpub\wwwroot\Sitecore\Website**
 *   Notable Properties: N/A
 *   This task empties the *~\temp\__UpgradeHistory* folder. This folder will contain all SPD installs. After a while, it can grow quite large if this maintenance task is not in place.
+
+---
 
 #### Prime Site
 *   Dependent on: **Download GeekHive Scripts** Build Task
@@ -98,6 +110,8 @@ Task Groups are extremely similar to Marketplace modules except they don't need 
 		*   Potential Changes: The path "_Base Build" is dependent on the name of your build. If the Build Template is used, it should default to "_Base Build".
 *   This task relies simply issues a request to a website/page. If Basic Authentication support is required, enter a username and password. If not, leave blank.
 
+---
+
 #### Replace tokens in ArtifactWebRoot
 *   Dependent on: [**Replace Tokens** Marketplace module](https://marketplace.visualstudio.com/items?itemName=qetza.replacetokens).
 *   Parameters: 
@@ -115,6 +129,8 @@ Task Groups are extremely similar to Marketplace modules except they don't need 
 	    *   Default Value: **}#**
 		*   This is likely the proper value, however if you are targeting replacements in a different way, update this value.
 *   This task replaces tokens in config files. For example, if you are transforming a *.Release.config with a value of **#{WebDatabaseConnectionString}#**, this task will review Release Variables for any match for the specific environment for **WebDatabaseConnectionString** and include the proper value.
+
+---
 
 #### Run Install URL
 *   Dependent on: **Download GeekHive Scripts** Build Task, **Copy Update Packages for SPD** Release Task, **Copy .Net X.X SPD Scripts** Release Task
@@ -137,6 +153,8 @@ Task Groups are extremely similar to Marketplace modules except they don't need 
 		*   Potential Changes: The path "_Base Build" is dependent on the name of your build. If the Build Template is used, it should default to "_Base Build".
 *   This task installs all Update Packages in the Sitecore Package Deployer folder. It performs an *asynchronous* install. Every *RepeatInterval* seconds it checks the current status of the install. It only ends the task once all Update Packages have been installed.
 
+---
+
 #### Smart AppPool Recycle
 *   Dependent on: **Download GeekHive Scripts** Build Task
 *   Parameters: 
@@ -154,6 +172,8 @@ Task Groups are extremely similar to Marketplace modules except they don't need 
 	    *   Default Value: **$(System.DefaultWorkingDirectory)\_Base Build\drop\SitecoreVSTS\Scripts**
 		*   Potential Changes: The path "_Base Build" is dependent on the name of your build. If the Build Template is used, it should default to "_Base Build".
 *   This task recycles the web application pool. It ensures that a brand new app pool is ready after the task is complete, as opposed to allowing a lingering/obsolete app pool that may serve requests. **Note: this task requires that the agent running the deployment has permission to perform an app pool recycle.**
+
+---
 
 #### Tag Repository with Latest Release
 *   Dependent on: **Download GeekHive Scripts** Build Task, [Git installed on server](https://git-scm.com/download/win) (must restart agent to see additional capability), [GitDeltaDeploy](https://www.nuget.org/packages/Hedgehog.TDS.BuildExtensions.GitDeltaDeploy/) configured and enabled (if not enabled, this task will fail, but continue. It is enabled at build queue time)
@@ -189,5 +209,7 @@ Task Groups are extremely similar to Marketplace modules except they don't need 
 *   This task automatically tags the current commit with the tag **"ProductionRelease"**. This enables GitDeltaDeploy to be fully automated. Only run this task on a CM server as part of a CD deployment. **See image below for executing a CM agent from a CD Task.**
 
 ![CM Agent on CD Task](../ReadMeImages/TagRepoWithLatest.png)
+
+---
 
 </details>
