@@ -11,8 +11,8 @@ From a VSTS instance:
    2. Once authenticated, visit **https://\<VSTS Project URL\>/_apis/projects** in a browser window.
    3. This will output all current projects in **JSON** format. Look for the project with the proper **"Name"**, then find the corresponding **"id"** property, remember this. 
 2. Navigate to the desired template in your local repository at `~\BuildTemplates\`
-   1. For IaaS builds, use *sitecore.vsts.build.IaaS.json*
-   2. For PaaS buidls, use *TBD*
+   1. For **IaaS/VMs** builds, use ***sitecore.vsts.build.IaaS.json***
+   2. For **PaaS** builds, use ***TBD***
 3. Edit this **\*.json** file
 4. Scroll all the way to the bottom and find the **"project"** property.
    1. Modify the **"id"** property to match the GUID you found in step **1** above.
