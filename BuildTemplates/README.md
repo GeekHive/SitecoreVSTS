@@ -20,6 +20,7 @@ From a VSTS instance:
    1. Modify the **"id"** property to match the GUID you found in step **1** above.
 5. Save your modified **\*.json** file.
 6. From VSTS online, navigate to the Builds page (Page name: **Build pipelines**)
+![Import Build](../ReadMeImages/ImportBuild.png)
 7. Click **"+ Import"**
 8. Click **"Browse..."**
 9. Click **"Import"**
@@ -47,6 +48,8 @@ Note the **Parameters**. The "Path to solution or packages.config" defaults to *
 ### Variables on Build Template
 
 <details><summary>Click to toggle contents...</summary>
+
+![Build Parameters](../ReadMeImages/BuildVariables.png)
 
 #### BuildPlatform
 *   Default Value: **Any CPU**
@@ -95,6 +98,8 @@ Note the **Parameters**. The "Path to solution or packages.config" defaults to *
 ### Build Steps (Build Sitecore Solution)
 
 <details><summary>Click to toggle contents...</summary>
+
+![Build Parameters](../ReadMeImages/BuildSteps.png)
 
 #### Download GeekHive Scripts
 *   Fields: No fields require attention.
