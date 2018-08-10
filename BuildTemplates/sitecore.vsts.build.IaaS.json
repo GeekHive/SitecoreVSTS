@@ -215,29 +215,32 @@
               "Contents": "*.dll\n*.pdb\n*.config\n*.xml\nApp_Config"
             }
           },
-          {
-            "environment": {},
-            "enabled": true,
-            "continueOnError": false,
-            "alwaysRun": false,
-            "displayName": "Remove Files From TDS Package",
-            "timeoutInMinutes": 0,
-            "condition": "succeeded()",
-            "refName": "PowerShell7",
-            "task": {
-              "id": "e213ff0f-5d5c-4791-802d-52ea3e7be1f1",
-              "versionSpec": "1.*",
-              "definitionType": "task"
-            },
-            "inputs": {
-              "scriptType": "filePath",
-              "scriptName": "$(Build.ArtifactStagingDirectory)\SitecoreVSTS\Scripts\Build\Remove TDS Files\RemoveFiles.ps1",
-              "arguments": "-pathToPackages \"$(Build.ArtifactStagingDirectory)\\_Packages\\TDS.PROJECT\"",
-              "workingFolder": "$(Build.ArtifactStagingDirectory)\\scripts\\",
-              "inlineScript": "# You can write your powershell scripts inline here. \n# You can also pass predefined and custom variables to this scripts using arguments\n\n Write-Host \"Hello World\"",
-              "failOnStandardError": "true"
-            }
-          },
+		   {  
+			  "environment":{  
+
+			  },
+			  "enabled":true,
+			  "continueOnError":false,
+			  "alwaysRun":false,
+			  "displayName":"Remove Files From TDS Packages",
+			  "timeoutInMinutes":0,
+			  "condition":"succeeded()",
+			  "task":{  
+				 "id":"e213ff0f-5d5c-4791-802d-52ea3e7be1f1",
+				 "versionSpec":"2.*",
+				 "definitionType":"task"
+			  },
+			  "inputs":{  
+				 "targetType":"filePath",
+				 "filePath":"$(Build.ArtifactStagingDirectory)\\SitecoreVSTS\\Scripts\\Build\\RemoveFilesFromTDSPackage.ps1",
+				 "arguments":"-pathToPackages \"$(Build.ArtifactStagingDirectory)\\_Packages\"",
+				 "script":"",
+				 "errorActionPreference":"stop",
+				 "failOnStderr":"false",
+				 "ignoreLASTEXITCODE":"false",
+				 "workingDirectory":"$(Build.ArtifactStagingDirectory)\\SitecoreVSTS\\Scripts\\Build"
+			  }
+		   },
           {
             "environment": {},
             "enabled": true,

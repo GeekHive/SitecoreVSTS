@@ -156,16 +156,15 @@ Note the **Parameters**. The "Path to solution or packages.config" defaults to *
 
 ---
 
-#### Remove Files From TDS Package
+#### Remove Files From TDS Packages
 *   Fields: 
     *   Script Path
-	    *   Default Value: $(Build.ArtifactStagingDirectory)\SitecoreVSTS\Scripts\Build\Remove TDS Files\RemoveFiles.ps1
-	    *   The path to the **RemoveFiles.ps1** script. 
-		*   **Note: if the "Download GeekHive Scripts" task is used, this field does not need to be modified.
+	    *   Default Value: $(Build.ArtifactStagingDirectory)\\SitecoreVSTS\\Scripts\\Build\\RemoveFilesFromTDSPackage.ps1
+	    *   Likely no changes needed
 	*   Arguments
-	    *   Default Value: -pathToPackages "$(Build.ArtifactStagingDirectory)\_Packages\TDS.Project"
-		*   Modify the **TDS.Project** portion of the Arguments field to point to the relevant TDS Project.
-*   You will likely have 1 or more of  these tasks. One is required for each TDS project unless a bundling is configured.
+	    *   Default Value: -pathToPackages "$(Build.ArtifactStagingDirectory)\_Packages"
+		*   Likely no changes needed
+*   Automatically, recursively seeks out *.update files and removes an files from the ~\bin directories.
 
 ---
 
