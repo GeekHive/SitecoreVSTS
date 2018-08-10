@@ -6,6 +6,7 @@ Task Groups are extremely similar to Marketplace modules except they don't need 
 
 <details><summary>Click to toggle contents...</summary>
 
+
 ![Import Task Group](../ReadMeImages/ImportTaskGroup.png)
 
 </details>
@@ -13,6 +14,7 @@ Task Groups are extremely similar to Marketplace modules except they don't need 
 ## Export Release Task Groups
 
 <details><summary>Click to toggle contents...</summary>
+
 
 ![Export Task Group](../ReadMeImages/ExportTaskGroup.png)
 
