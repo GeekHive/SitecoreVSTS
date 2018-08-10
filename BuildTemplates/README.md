@@ -49,7 +49,7 @@ Note the **Parameters**. The "Path to solution or packages.config" defaults to *
 
 <details><summary>Click to toggle contents...</summary>
 
-![Build Parameters](../ReadMeImages/BuildVariables.png)
+![Build Variables](../ReadMeImages/BuildVariables.png)
 
 #### BuildPlatform
 *   Default Value: **Any CPU**
@@ -99,7 +99,7 @@ Note the **Parameters**. The "Path to solution or packages.config" defaults to *
 
 <details><summary>Click to toggle contents...</summary>
 
-![Build Parameters](../ReadMeImages/BuildSteps.png)
+![Build Steps](../ReadMeImages/BuildSteps.png)
 
 #### Download GeekHive Scripts
 *   Fields: No fields require attention.
