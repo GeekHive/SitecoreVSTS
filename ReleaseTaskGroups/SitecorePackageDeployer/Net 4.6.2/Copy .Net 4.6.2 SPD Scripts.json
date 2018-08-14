@@ -1,14 +1,14 @@
 {  
    "tasks":[  
       {  
-         "displayName":"Copy .Net 4.5 SPD Scripts",
+         "displayName":"Copy .Net 4.6.2 SPD Scripts",
          "alwaysRun":false,
          "continueOnError":false,
          "condition":"succeeded()",
          "enabled":true,
          "timeoutInMinutes":0,
          "inputs":{  
-            "SourceFolder":"$(System.DefaultWorkingDirectory)\\_Base Build\\drop\\SitecoreVSTS\\Scripts\\SPD\\Net4.5",
+            "SourceFolder":"$(System.DefaultWorkingDirectory)\\_Base Build\\drop\\SitecoreVSTS\\Scripts\\SPD\\Net4.6.2",
             "Contents":"App_Config\\Include\\Hhogdev.SitecorePackageDeployer.config\nStartSitecorePackageDeployer.aspx\nbin\\*",
             "TargetFolder":"$(SitecoreWebRoot)",
             "CleanTargetFolder":"false",
@@ -49,7 +49,7 @@
       "isTest":false
    },
    "iconUrl":"https://cdn.vsassets.io/v/20180807T033317/_content/icon-meta-task.png",
-   "friendlyName":"Copy .Net 4.5 SPD Scripts",
+   "friendlyName":"Copy .Net 4.6.2 SPD Scripts",
    "description":"",
    "category":"Deploy",
    "definitionType":"metaTask",
@@ -89,7 +89,7 @@
    "dataSourceBindings":[  
 
    ],
-   "instanceNameFormat":"Task group: Copy .Net 4.5 SPD Scripts",
+   "instanceNameFormat":"Task group: Copy .Net 4.6.2 SPD Scripts",
    "preJobExecution":{  
 
    },

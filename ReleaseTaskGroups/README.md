@@ -26,16 +26,17 @@ Task Groups are extremely similar to Marketplace modules except they don't need 
 
 ---
 
-#### Copy .Net 4.5 SPD Scripts
-*   Dependent on: **Download GeekHive Scripts** Build Task, .Net 4.5 web project
+#### Copy .Net X.X SPD Scripts
+*   Dependent on: **Download GeekHive Scripts** Build Task, .Net X.X web project
 *   Parameters: 
     *   SitecoreWebRoot
 	    *   Default Value: **C:\inetpub\wwwroot\Sitecore\Website**
 *   Notable Properties:
     *   Source Folder
-	    *   Default Value: **$(System.DefaultWorkingDirectory)\_Base Build\drop\SitecoreVSTS\Scripts\SPD\Net4.5**
+	    *   Default Value: **$(System.DefaultWorkingDirectory)\_Base Build\drop\SitecoreVSTS\Scripts\SPD\NetX.X**
 		*   Potential Changes: The path "_Base Build" is dependent on the name of your build. If the Build Template is used, it should default to "_Base Build".
-*   This task copies all required code and config files to execute Sitecore Package Deployer to the web root.
+*   This task copies all required code and config files to execute Sitecore Package Deployer to the web root. 
+*   **Note: Choose the proper version based on your project .Net version.**
 
 ---
 
@@ -64,7 +65,7 @@ Task Groups are extremely similar to Marketplace modules except they don't need 
     *   Source Folder
 	    *   Default Value: **$(System.DefaultWorkingDirectory)\_Base Build\drop\_Packages**
 		*   Potential Changes: The path "_Base Build" is dependent on the name of your build. If the Build Template is used, it should default to "_Base Build".
-*   This task copies all listed TDS Update Packages to the Sitecore Package Deployer folder.
+*   This task copies all listed TDS Update Packages to the Sitecore Package Deployer folder. 
 
 ---
 
