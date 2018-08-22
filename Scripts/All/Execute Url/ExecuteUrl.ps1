@@ -14,10 +14,10 @@ Write-Host "Exe location: $($executable)"
 get-date
 $curlCommand
 if($Username -and $Password){
-	$curlCommand = "'$($executable)' -sS -u $($Username):$($Password) $($SiteUrl) --connect-timeout $ConnectionTimeout --max-time $Timeout"
+	$curlCommand = "'$($executable)' --insecure -sS -u $($Username):$($Password) $($SiteUrl) --connect-timeout $ConnectionTimeout --max-time $Timeout"
 }
 else{
-	$curlCommand = "'$($executable)' -sS $($SiteUrl) --connect-timeout $ConnectionTimeout --max-time $Timeout"
+	$curlCommand = "'$($executable)' --insecure -sS $($SiteUrl) --connect-timeout $ConnectionTimeout --max-time $Timeout"
 }
 
 if($RepeatInterval -gt 0)
