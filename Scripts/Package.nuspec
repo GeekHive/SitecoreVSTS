@@ -6,14 +6,15 @@
     <authors>John Rappel, Steve VandenBush</authors>
     <owners>GeekHive</owners>
     <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
-    <projectUrl>https://github.com/GeekHive/SitecoreVSTS</projectUrl>
+    <projectUrl>https://github.com/GeekHive/SitecoreVSTS/tree/master/Scripts</projectUrl>
+	<repository url="https://github.com/GeekHive/SitecoreVSTS/tree/master/Scripts" type="git" />
     <iconUrl>https://raw.githubusercontent.com/GeekHive/SitecoreVSTS/4b110332b50f180aff565150c6d3ef7794ab1029/ReadMeImages/gh_logo.jpg</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <title>Collection of scripts for use in Sitecore CI/CD Build/Release Process</title>
-	<description>PowerShell scripts to assist in Sitecore CI/CD process. See Project URL for updated ReadMe and instructions for use.</description>
+	<description>PowerShell scripts to assist in Sitecore CI/CD process. DO NOT INSTALL IN VISUAL STUDIO PROJECT. See Project URL for updated ReadMe and instructions for use.</description>
     <releaseNotes>Initial commit.</releaseNotes>
     <copyright>Copyright 2018</copyright>
-    <tags>Sitecore CICD</tags>
+    <tags>Sitecore CICD VSTS</tags>
   </metadata>
   <files>
 	<file src="All\Execute Url\curl.exe" target="All\Execute Url\curl.exe" />
