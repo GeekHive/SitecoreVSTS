@@ -1,3 +1,5 @@
+# Credit: Rob Ahnemann - http://www.rockpapersitecore.com/about-me/
+
 Param(
     [string]$pathToPackages
 )
