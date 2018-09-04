@@ -26,7 +26,7 @@ This script intelligently recycles an app pool on a VM. It ensures a new app poo
 
 `$(System.DefaultWorkingDirectory)\_Base Build\drop\SitecoreCICD\All\recycle-app-pool.ps1 -AppPool $(AppPoolName) -Count 10 -Delay 30000`
 
-### kill-app-service-site.ps1 (PaaS Specific)
+### [kill-app-service-site.ps1 (PaaS Specific)](All/kill-app-service-site.ps1)
 
 This script intelligently kills the w3wp worker process on the specified App Service. This method is significantly faster than restarting the web app. It is designed to freshen up the worker process prior to a deployment.
 
@@ -36,7 +36,7 @@ This script intelligently kills the w3wp worker process on the specified App Ser
 
 _Note: It is recommended that the `password` parameter use a secure variable. Secure variables are never listed in output._
 
-### Execute Url\\ExecuteUrl.ps1
+### [Execute Url\\ExecuteUrl.ps1](All/Execute Url/ExecuteUrl.ps1)
 
 This script, along with the accompanying `curl.exe` and `libcurl.dll`, request a URL and return the response. This script has many modes of operation.
 
@@ -64,7 +64,7 @@ Scripts designed specifically to be used during a build process.
 
 <details><summary>Click to toggle contents...</summary>
 
-### RemoveFilesFromTDSPackage.ps1
+### [RemoveFilesFromTDSPackage.ps1](Build/RemoveFilesFromTDSPackage.ps1)
 
 This script recursively searches directories for *.update packages. When found, it removes all DLL's from the \\bin folder that resides in the update package. This removes the possibility of an update package installation from causing a soft app pool recycle with the inclusion of a DLL. It works best when TDS update packages are configured to include **items only**.
 
@@ -82,7 +82,7 @@ Scripts designed specifically to be used on a Content Management server.
 
 <details><summary>Click to toggle contents...</summary>
 
-## TagRepo.ps1
+## [TagRepo.ps1](CM Only/TagRepo.ps1)
 
 This script should be used in conjunction with GitDeltaDeploy. GitDeltaDeploy must be enabled for this task to execute properly. It also has a dependency that Git be installed on the VM this task runs on.
 
@@ -100,7 +100,7 @@ Utilities to be installed (copied) to a Sitecore instance to provide Sitecore Pa
 
 <details><summary>Click to toggle contents...</summary>
 
-### Net4.5/Net4.6
+### [Net4.5/Net4.6](SPD)
 
 Target the proper version for your web project, respectively.  The contents of the chosen folder should be copied directly to the Content Management Server web root.
 
