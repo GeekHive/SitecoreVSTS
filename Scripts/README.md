@@ -36,7 +36,7 @@ This script intelligently kills the w3wp worker process on the specified App Ser
 
 _Note: It is recommended that the `password` parameter use a secure variable. Secure variables are never listed in output._
 
-### [Execute Url\\ExecuteUrl.ps1](All/Execute Url/ExecuteUrl.ps1)
+### [ExecuteUrl.ps1](All/Execute%20Url/ExecuteUrl.ps1)
 
 This script, along with the accompanying `curl.exe` and `libcurl.dll`, request a URL and return the response. This script has many modes of operation.
 
@@ -82,7 +82,7 @@ Scripts designed specifically to be used on a Content Management server.
 
 <details><summary>Click to toggle contents...</summary>
 
-## [TagRepo.ps1](CM Only/TagRepo.ps1)
+## [TagRepo.ps1](CM%20Only/TagRepo.ps1)
 
 This script should be used in conjunction with GitDeltaDeploy. GitDeltaDeploy must be enabled for this task to execute properly. It also has a dependency that Git be installed on the VM this task runs on.
 
