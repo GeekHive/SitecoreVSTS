@@ -6,7 +6,7 @@ A collection of PowerShell scripts designed to aid in the efficiency of Sitecore
 
 _(VSTS example image below, but applicable to all CICD tools)_
 
-![Install Sitecore Scripts](../ReadMeImages/NuGetInstallSitecoreScripts.png.png)
+![Install Sitecore Scripts](../ReadMeImages/NuGetInstallSitecoreScripts.png)
 
 These scripts follow a "Build once, deploy many" philosophy. The NuGet package must be installed and included in the build artifacts. This allows the scripts to be used during the build _and_ release process. Install as an early step in the build process.
 
