@@ -18,7 +18,7 @@ Scripts designed to be executed in a variety of server configurations.
 
 <details><summary>Click to toggle contents...</summary>
 
-### recycle-app-pool.ps1 (VM Specific)
+### [recycle-app-pool.ps1 (VM Specific)](All/recycle-app-pool.ps1)
 
 This script intelligently recycles an app pool on a VM. It ensures a new app pool is running when the script execution completes. It requires elevated permissions in order to access the list of application pools.
 
