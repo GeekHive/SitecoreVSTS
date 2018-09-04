@@ -33,6 +33,7 @@ This script intelligently kills the w3wp worker process on the specified App Ser
 #### Example
 
 `$(System.DefaultWorkingDirectory)\_Base Build\drop\SitecoreCICD\All\kill-app-service-site.ps1 -userId $(AzureUserName) -password $(AzurePassword) -subscriptionId $(AzureSubscriptionId) -resourceGroupName $(ReleaseSpecificResourceGroup) -appServiceName $(ReleaseSpecificAppServiceName)`
+
 _Note: It is recommended that the `password` parameter use a secure variable. Secure variables are never listed in output._
 
 ### Execute Url\\ExecuteUrl.ps1
