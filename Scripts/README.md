@@ -47,11 +47,13 @@ This script, along with the accompanying `curl.exe` and `libcurl.dll`, request a
 #### Example of Sitecore Package Deployer Use
 
 `$(System.DefaultWorkingDirectory)\_Base Build\drop\SitecoreCICD\All\Execute Url\ExecuteUrl.ps1 -SiteUrl "$(hostname)/StartSitecorePackageDeployer.aspx?response=json'&'pauseEvents=false" -Username $(BasicAuthUsername) -Password $(BasicAuthPassword) -RepeatInterval 3`
-_Note: This will repeatedly ping SPD and report the installation status. It will exit once installation has fully completed._Base
+
+_Note: This will repeatedly ping SPD and report the installation status. It will exit once installation has fully completed._
 
 #### Example of Requesting Site URL
 
 `$(System.DefaultWorkingDirectory)\_Base Build\drop\SitecoreCICD\All\Execute Url\ExecuteUrl.ps1 -SiteUrl '$(primeUrl)' -Username $(BasicAuthUsername) -Password $(BasicAuthPassword)`
+
 _Note: BasicAuthUsername and BasicAuthPassword are optional._
 
 </details>
@@ -86,6 +88,7 @@ This script should be used in conjunction with GitDeltaDeploy. GitDeltaDeploy mu
 #### Example
 
 `$(System.DefaultWorkingDirectory)\_Base Build\drop\SitecoreCICD\CM Only\TagRepo.ps1 -RepoUrl "$(RepoUrl)" -Username $(RepoUsername) -Password $(RepoPassword) -Location "$(TempRepoLocation)" -DeltaFile "$(DeltaFileLocation)"`
+
 _Note: GitDeltaDeploy will create a file as part of the build output at '~\Delta\LastDeploymentGitCommitId.txt'. The location of this text file is what is required for the '-DeltaFile' parameter._
 
 </details>
