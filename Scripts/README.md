@@ -71,7 +71,8 @@ This script recursively searches directories for *.update packages. When found, 
 #### Example
 
 `$(Build.ArtifactStagingDirectory)\SitecoreCICD\Build\RemoveFilesFromTDSPackage.ps1 -pathToPackages "$(Build.ArtifactStagingDirectory)\_Packages"`
-**Credit: Rob Ahnemann - http://www.rockpapersitecore.com/about-me/
+
+**Credit: Rob Ahnemann - http://www.rockpapersitecore.com/about-me/**
 
 </details>
 
