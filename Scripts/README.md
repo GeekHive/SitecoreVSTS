@@ -78,7 +78,7 @@ This script recursively searches directories for *.update packages. When found, 
 
 ## CM Only
 
-Scripts designed specifically to be used on a Content Management server.
+Scripts designed specifically to be used on a Content Management server or at the very least a non-CD server (dev/integration).
 
 <details><summary>Click to toggle contents...</summary>
 
