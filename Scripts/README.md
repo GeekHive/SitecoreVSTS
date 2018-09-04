@@ -18,13 +18,22 @@ Scripts designed to be executed in a variety of server configurations.
 
 <details><summary>Click to toggle contents...</summary>
 
-### recycle-app-pool.ps1
+### recycle-app-pool.ps1 (VM Specific)
 
 This script intelligently recycles an app pool on a VM. It ensures a new app pool is running when the script execution completes. It requires elevated permissions in order to access the list of application pools.
 
 #### Example
 
 `$(System.DefaultWorkingDirectory)\_Base Build\drop\SitecoreCICD\All\recycle-app-pool.ps1 -AppPool $(AppPoolName) -Count 10 -Delay 30000`
+
+### kill-app-service-site.ps1 (PaaS Specific)
+
+This script intelligently kills the w3wp worker process on the specified App Service. This method is significantly faster than restarting the web app. It is designed to freshen up the worker process prior to a deployment.
+
+#### Example
+
+`$(System.DefaultWorkingDirectory)\_Base Build\drop\SitecoreCICD\All\kill-app-service-site.ps1 -userId $(AzureUserName) -password $(AzurePassword) -subscriptionId $(AzureSubscriptionId) -resourceGroupName $(ReleaseSpecificResourceGroup) -appServiceName $(ReleaseSpecificAppServiceName)`
+_Note: It is recommended that the `password` parameter use a secure variable. Secure variables are never listed in output._
 
 ### Execute Url\\ExecuteUrl.ps1
 
