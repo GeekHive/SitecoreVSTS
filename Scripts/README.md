@@ -26,6 +26,8 @@ This script intelligently recycles an app pool on a VM. It ensures a new app poo
 
 `$(System.DefaultWorkingDirectory)\_Base Build\drop\SitecoreCICD\All\recycle-app-pool.ps1 -AppPool $(AppPoolName) -Count 10 -Delay 30000`
 
+**Credit: Thomas Zahner - https://twitter.com/thomaszahner**
+
 ### [kill-app-service-site.ps1 (PaaS Specific)](All/kill-app-service-site.ps1)
 
 This script intelligently kills the w3wp worker process on the specified App Service. This method is significantly faster than restarting the web app. It is designed to freshen up the worker process prior to a deployment.

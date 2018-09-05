@@ -6,6 +6,8 @@
     Example usage: 
     .\recycle-app-pool.ps1 myAppPoolName 10 30000
 	.\recycle-app-pool.ps1 -AppPool myAppPoolName -Count 10 -Delay 30000
+	
+	Credit: Thomas Zahner - https://twitter.com/thomaszahner
 #>
 
 Param(
