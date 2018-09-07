@@ -63,7 +63,12 @@ function Attempt-Restart{
 	if(Iterate-Processes){
 		Write-Host "Invoking Web Request to $defaultHostName ...`n" -foregroundcolor "Yellow"
 		
-		$statusCode = (invoke-webrequest  -method head -uri $defaultHostName).statuscode
+		try{
+			$statusCode = (invoke-webrequest  -method head -uri $defaultHostName).statuscode
+		}
+		catch{
+			Write-Host "Error during invoke-webrequest method. Likely a status code other than 200 was returned`n" -foregroundcolor "Red"
+		}
 		
 		if($statusCode -eq 200){
 			Write-Host "Response Status Code: $statusCode`n" -foregroundcolor "Green"
@@ -121,7 +126,7 @@ $statusCode = 0
  
 Write-Host "Starting restart attempts. Max Attempts: $maxRestartAttempts`n" -backgroundcolor "Black"
 
-For ($i=1; $i -lt $maxRestartAttempts; $i++) {
+For ($i=1; $i -le $maxRestartAttempts; $i++) {
 	Write-Host "Restart attempt: $i ...`n" -foregroundcolor "Yellow"
     Attempt-Restart
 }
