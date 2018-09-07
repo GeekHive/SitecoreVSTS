@@ -68,6 +68,14 @@ function Attempt-Restart{
 		}
 		catch{
 			Write-Host "Error during invoke-webrequest method. Likely a status code other than 200 was returned`n" -foregroundcolor "Red"
+			
+			Write-Host "Invoking Web Request, attempt #2 for iteration, to $defaultHostName ...`n" -foregroundcolor "Yellow"
+			try{
+				$statusCode = (invoke-webrequest  -method head -uri $defaultHostName).statuscode
+			}
+			catch{
+				Write-Host "Error during invoke-webrequest method. Likely a status code other than 200 was returned`n" -foregroundcolor "Red"
+			}
 		}
 		
 		if($statusCode -eq 200){
