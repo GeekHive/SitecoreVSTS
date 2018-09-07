@@ -130,3 +130,5 @@ For ($i=1; $i -le $maxRestartAttempts; $i++) {
 	Write-Host "Restart attempt: $i ...`n" -foregroundcolor "Yellow"
     Attempt-Restart
 }
+
+throw "Error restarting site in $maxRestartAttempts tries"
