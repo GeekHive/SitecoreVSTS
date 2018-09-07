@@ -3,79 +3,125 @@ Param(
 	[Parameter(Mandatory=$true)][string]$password ,
 	[Parameter(Mandatory=$true)][string]$subscriptionId,
 	[Parameter(Mandatory=$true)][string]$resourceGroupName,
-	[Parameter(Mandatory=$true)][string]$appServiceName
+	[Parameter(Mandatory=$true)][string]$appServiceName,
+	[Parameter(Mandatory=$true)][int]$maxRestartAttempts
 )
 
+function Iterate-Processes{
+	foreach ($instance in $webSiteInstances)
+	{
+		$instanceId = $instance.Name
+		
+		Write-Host "Getting all processes from $instanceId ...`n" -foregroundcolor "Yellow"
+		
+		$processList =  Get-AzureRmResource `
+						-ResourceId /subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Web/sites/$appServiceName/instances/$instanceId/processes
+	 
+		foreach ($process in $processList)
+		{      
+			$processIds = $process.Properties.Id
+			Write-Host "Process ids found: $processIds`n" -foregroundcolor "Green"
+			
+			if ($process.Properties.Name -eq "w3wp")
+			{   
+				foreach ($processId in $process.Properties.Id)
+				{
+					Write-Host "w3wp Process id: $processId`n" -foregroundcolor "Green"
+					
+					Write-Host "Getting process properties ...`n" -foregroundcolor "Yellow"
+					
+					$resourceId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Web/sites/$appServiceName/instances/$instanceId/processes/" + $processId          
+					$processInfoJson = Get-AzureRmResource -ResourceId  $resourceId                                    
+		 
+					if ($processInfoJson.Properties.is_scm_site -ne $true)
+					{
+						Write-Host "Stopping process with PID: $processId ...`n" -foregroundcolor "Yellow"
+						
+						$result = Remove-AzureRmResource -ResourceId $resourceId -Force 
+		 
+						if ($result -eq $true)
+						{ 
+							Write-Host "Process $processId stopped`n" -foregroundcolor "Green"
+							return $true
+						}
+						else{
+							Write-Host "Error stopping process $processId`n" -foregroundcolor "Red"
+						}
+					}   
+					else{
+						Write-Host "Skipping KUDU process with PID: $processId ...`n" -foregroundcolor "Green"
+					}
+				}
+		   }
+		}
+	}
+	
+	return $false
+}
+
+function Attempt-Restart{
+	if(Iterate-Processes){
+		Write-Host "Invoking Web Request to $defaultHostName ...`n" -foregroundcolor "Yellow"
+		
+		$statusCode = (invoke-webrequest  -method head -uri $defaultHostName).statuscode
+		
+		if($statusCode -eq 200){
+			Write-Host "Response Status Code: $statusCode`n" -foregroundcolor "Green"
+			exit
+		}
+		else{
+			Write-Host "Response Status Code: $statusCode`n" -foregroundcolor "Red"
+		}
+	}
+	else{
+		Write-Host "No matched w3wp process found to stop`n" -foregroundcolor "Red"
+	}
+}
+
 $securePassword = ConvertTo-SecureString $password -asplaintext -force
- 
-#Set the powershell credential object
+
 $cred = New-Object -TypeName System.Management.Automation.PSCredential($userId ,$securePassword)
- 
-#log On To Azure Account
-Write-Host "Logging in to Azure..."
-Write-Host "User ID: $($userId)"
+
+Write-Host "User ID: $($userId)" -foregroundcolor "Green"
+Write-Host "Logging into Azure ..." -foregroundcolor "Yellow"
 
 Login-AzureRmAccount -Credential $cred -subscriptionId $subscriptionId
 
-Write-Host "Selecting Subscription..."
-Write-Host "Subscription ID: $($subscriptionId)"
+Write-Host "Successfully logged into Azure`n" -foregroundcolor "Green"
+
+Write-Host "Subscription ID: $($subscriptionId)" -foregroundcolor "Green"
+
+Write-Host "Selecting Subscription..." -foregroundcolor "Yellow"
 
 Select-AzureRmSubscription -subscriptionId $subscriptionId
 
-Write-Host "Getting app service resource..."
-Write-Host "Subscription ID: $($subscriptionId)"
-Write-Host "Resource Group Name: $($resourceGroupName)"
-Write-Host "App Service Name: $($appServiceName)"
+Write-Host "Successfully selected Subscription`n" -foregroundcolor "Green"
 
-# $processList = Get-AzureRmResource -ResourceId /subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Web/sites/$appServiceName/instances
+Write-Host "Subscription ID: $($subscriptionId)" -foregroundcolor "Green"
+Write-Host "Resource Group Name: $($resourceGroupName)" -foregroundcolor "Green"
+Write-Host "App Service Name: $($appServiceName)`n" -foregroundcolor "Green"
 
 $webSiteInstances = @()
  
 $webSiteInstances = Get-AzureRmResource -ResourceGroupName $resourceGroupName -ResourceType Microsoft.Web/sites/instances -ResourceName $appServiceName
  
-foreach ($instance in $webSiteInstances)
-{
-    $instanceId = $instance.Name
-    "Enumerating on all processes on {0} instance" -f $instanceId 
-    
-    # This gives you list of processes running
-    # on a particular instance
-    $processList =  Get-AzureRmResource `
-                    -ResourceId /subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Web/sites/$appServiceName/instances/$instanceId/processes
+$site = Get-AzureRmResource -ResourceGroupName $resourceGroupName -ResourceType Microsoft.Web/sites -ResourceName $appServiceName -ApiVersion 2018-02-01 
  
-    foreach ($process in $processList)
-    {      
-		Write-Host "Process ids found: "
-		Write-Host $process.Properties.Id
-	
-        if ($process.Properties.Name -eq "w3wp")
-        {   
-			foreach ($processId in $process.Properties.Id)
-			{
-				Write-Host "w3wp Process id: "
-				Write-Host $processId
-				
-				$resourceId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Web/sites/$appServiceName/instances/$instanceId/processes/" + $processId          
-				$processInfoJson = Get-AzureRmResource -ResourceId  $resourceId                                    
-	 
-				# is_scm_site is a property which is set
-				# on the worker process for KUDU 
-				if ($processInfoJson.Properties.is_scm_site -ne $true)
-				{
-				    $computerName = $processInfoJson.Properties.Environment_variables.COMPUTERNAME
-				    "Instance ID " + $instanceId  + " found"
-					
-				    "Stopping process with PID " + $processInfoJson.Properties.Id
+$scheme = "http://"
 
-					# Remove-AzureRMResource finally STOPS the worker process
-					$result = Remove-AzureRmResource -ResourceId $resourceId -Force 
-	 
-					if ($result -eq $true)
-					{ 
-					    "Process {0} stopped " -f $processInfoJson.Properties.Id
-					}
-				}   
-			}
-       }
-    }
+If ($site.properties.httpsOnly -eq "true") { 
+	$scheme = "https://"
+} 
+ 
+$defaultHostName = $scheme + $site.properties.defaultHostName + "/"
+
+Write-Host "Default Host Name: $defaultHostName`n" -foregroundcolor "Green"
+
+$statusCode = 0
+ 
+Write-Host "Starting restart attempts. Max Attempts: $maxRestartAttempts`n" -backgroundcolor "Black"
+
+For ($i=1; $i -lt $maxRestartAttempts; $i++) {
+	Write-Host "Restart attempt: $i ...`n" -foregroundcolor "Yellow"
+    Attempt-Restart
 }

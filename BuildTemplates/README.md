@@ -159,7 +159,7 @@ Note the **Parameters**. The "Path to solution or packages.config" defaults to *
 #### Remove Files From TDS Packages
 *   Fields: 
     *   Script Path
-	    *   Default Value: $(Build.ArtifactStagingDirectory)\\SitecoreVSTS\\Scripts\\Build\\RemoveFilesFromTDSPackage.ps1
+	    *   Default Value: $(Build.ArtifactStagingDirectory)\\SitecoreCICD\\Scripts\\Build\\RemoveFilesFromTDSPackage.ps1
 	    *   Likely no changes needed
 	*   Arguments
 	    *   Default Value: -pathToPackages "$(Build.ArtifactStagingDirectory)\_Packages"
