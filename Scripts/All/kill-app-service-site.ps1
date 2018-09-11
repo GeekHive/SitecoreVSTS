@@ -4,7 +4,8 @@ Param(
 	[Parameter(Mandatory=$true)][string]$subscriptionId,
 	[Parameter(Mandatory=$true)][string]$resourceGroupName,
 	[Parameter(Mandatory=$true)][string]$appServiceName,
-	[Parameter(Mandatory=$true)][int]$maxRestartAttempts
+	[Parameter(Mandatory=$true)][int]$maxRestartAttempts,
+	[string]$urlPart = "" # do not start with "/"
 )
 
 function Iterate-Processes{
@@ -15,6 +16,8 @@ function Iterate-Processes{
 		Write-Host "Getting all processes from $instanceId ...`n" -foregroundcolor "Yellow"
 		
 		$processList =  Get-AzureRmResource -ResourceGroupName $resourceGroupName -ResourceType "Microsoft.Web/sites/instances/processes" -ResourceName "$appServiceName/$instanceId" -ApiVersion 2018-02-01
+		
+		$returnValue = $false
 		
 		foreach ($process in $processList)
 		{      
@@ -42,7 +45,7 @@ function Iterate-Processes{
 						if ($result -eq $true)
 						{ 
 							Write-Host "Process $processId stopped`n" -foregroundcolor "Green"
-							return $true
+							$returnValue = $true
 						}
 						else{
 							Write-Host "Error stopping process $processId`n" -foregroundcolor "Red"
@@ -56,15 +59,15 @@ function Iterate-Processes{
 		}
 	}
 	
-	return $false
+	return $returnValue
 }
 
 function Attempt-Restart{
 	if(Iterate-Processes){
-		Write-Host "Invoking Web Request to $defaultHostName ...`n" -foregroundcolor "Yellow"
+		Write-Host "Invoking Web Request to $defaultHostName$urlPart ...`n" -foregroundcolor "Yellow"
 		
 		try{
-			$statusCode = (invoke-webrequest  -method head -uri $defaultHostName).statuscode
+			$statusCode = (invoke-webrequest  -method head -uri "$defaultHostName$urlPart").statuscode
 		}
 		catch{
 			Write-Host "Error during invoke-webrequest method. Likely a status code other than 200 was returned`n" -foregroundcolor "Red"
@@ -72,7 +75,7 @@ function Attempt-Restart{
 			Write-Host "Invoking Web Request, attempt #2 for iteration, to $defaultHostName ...`n" -foregroundcolor "Yellow"
 			
 			try{
-				$statusCode = (invoke-webrequest  -method head -uri $defaultHostName).statuscode
+				$statusCode = (invoke-webrequest  -method head -uri "$defaultHostName$urlPart").statuscode
 			}
 			catch{
 				Write-Host "Error during invoke-webrequest method. Likely a status code other than 200 was returned`n" -foregroundcolor "Red"
