@@ -5,7 +5,7 @@ Param(
 	[Parameter(Mandatory=$true)][string]$resourceGroupName,
 	[Parameter(Mandatory=$true)][string]$appServiceName,
 	[Parameter(Mandatory=$true)][int]$maxRestartAttempts,
-	[string]$urlPart = "" # do not start with "/"
+	[string]$resolvingUrl = ""
 )
 
 function Iterate-Processes{
@@ -64,18 +64,18 @@ function Iterate-Processes{
 
 function Attempt-Restart{
 	if(Iterate-Processes){
-		Write-Host "Invoking Web Request to $defaultHostName$urlPart ...`n" -foregroundcolor "Yellow"
+		Write-Host "Invoking Web Request to $resolvingUrl ...`n" -foregroundcolor "Yellow"
 		
 		try{
-			$statusCode = (invoke-webrequest  -method head -uri "$defaultHostName$urlPart").statuscode
+			$statusCode = (invoke-webrequest  -method head -uri "$resolvingUrl").statuscode
 		}
 		catch{
 			Write-Host "Error during invoke-webrequest method. Likely a status code other than 200 was returned`n" -foregroundcolor "Red"
 			
-			Write-Host "Invoking Web Request, attempt #2 for iteration, to $defaultHostName ...`n" -foregroundcolor "Yellow"
+			Write-Host "Invoking Web Request, attempt #2 for iteration, to $resolvingUrl ...`n" -foregroundcolor "Yellow"
 			
 			try{
-				$statusCode = (invoke-webrequest  -method head -uri "$defaultHostName$urlPart").statuscode
+				$statusCode = (invoke-webrequest  -method head -uri "$resolvingUrl").statuscode
 			}
 			catch{
 				Write-Host "Error during invoke-webrequest method. Likely a status code other than 200 was returned`n" -foregroundcolor "Red"
@@ -124,15 +124,17 @@ $webSiteInstances = Get-AzureRmResource -ResourceGroupName $resourceGroupName -R
  
 $site = Get-AzureRmResource -ResourceGroupName $resourceGroupName -ResourceType Microsoft.Web/sites -ResourceName $appServiceName -ApiVersion 2018-02-01 
  
-$scheme = "http://"
+if([string]::IsNullOrEmpty($resolvingUrl)){
+	$scheme = "http://"
 
-If ($site.properties.httpsOnly -eq "true") { 
-	$scheme = "https://"
-} 
+	If ($site.properties.httpsOnly -eq "true") { 
+		$scheme = "https://"
+	} 
+	 
+	$resolvingUrl = $scheme + $site.properties.defaultHostName + "/"
+}
  
-$defaultHostName = $scheme + $site.properties.defaultHostName + "/"
-
-Write-Host "Default Host Name: $defaultHostName`n" -foregroundcolor "Green"
+Write-Host "Resolving URL: $resolvingUrl`n" -foregroundcolor "Green"
 
 $statusCode = 0
  
