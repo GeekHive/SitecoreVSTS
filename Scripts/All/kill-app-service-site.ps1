@@ -14,9 +14,8 @@ function Iterate-Processes{
 		
 		Write-Host "Getting all processes from $instanceId ...`n" -foregroundcolor "Yellow"
 		
-		$processList =  Get-AzureRmResource `
-						-ResourceId /subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Web/sites/$appServiceName/instances/$instanceId/processes
-	 
+		$processList =  Get-AzureRmResource -ResourceGroupName $resourceGroupName -ResourceType "Microsoft.Web/sites/instances/processes" -ResourceName "$appServiceName/$instanceId" -ApiVersion 2018-02-01
+		
 		foreach ($process in $processList)
 		{      
 			$processIds = $process.Properties.Id
@@ -30,14 +29,15 @@ function Iterate-Processes{
 					
 					Write-Host "Getting process properties ...`n" -foregroundcolor "Yellow"
 					
-					$resourceId = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.Web/sites/$appServiceName/instances/$instanceId/processes/" + $processId          
-					$processInfoJson = Get-AzureRmResource -ResourceId  $resourceId                                    
-		 
+					$resourceName = "$appServiceName/$instanceId/$processId"
+					
+					$processInfoJson = Get-AzureRmResource -ResourceGroupName $resourceGroupName -ResourceType "Microsoft.Web/sites/instances/processes" -ResourceName $resourceName -ApiVersion 2018-02-01
+					
 					if ($processInfoJson.Properties.is_scm_site -ne $true)
 					{
 						Write-Host "Stopping process with PID: $processId ...`n" -foregroundcolor "Yellow"
 						
-						$result = Remove-AzureRmResource -ResourceId $resourceId -Force 
+						$result = Remove-AzureRmResource -ResourceGroupName $resourceGroupName -ResourceType "Microsoft.Web/sites/instances/processes" -ResourceName $resourceName -ApiVersion 2018-02-01 -Force
 		 
 						if ($result -eq $true)
 						{ 
@@ -117,7 +117,7 @@ Write-Host "App Service Name: $($appServiceName)`n" -foregroundcolor "Green"
 
 $webSiteInstances = @()
  
-$webSiteInstances = Get-AzureRmResource -ResourceGroupName $resourceGroupName -ResourceType Microsoft.Web/sites/instances -ResourceName $appServiceName
+$webSiteInstances = Get-AzureRmResource -ResourceGroupName $resourceGroupName -ResourceType Microsoft.Web/sites/instances -ResourceName $appServiceName -ApiVersion 2018-02-01 
  
 $site = Get-AzureRmResource -ResourceGroupName $resourceGroupName -ResourceType Microsoft.Web/sites -ResourceName $appServiceName -ApiVersion 2018-02-01 
  
