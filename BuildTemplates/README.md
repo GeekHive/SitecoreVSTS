@@ -1,6 +1,6 @@
 [<< Back to main README.md](../README.md)
 
-The Build Templates allow you to quickly frame up a full build, with many bells and whistles prepackages. Only a few properties need to be updated after importing the Build Template.
+The Build Templates allow you to quickly frame up a full build, with many bells and whistles prepackaged. Only a few properties need to be updated after importing the Build Template.
 
 ## Import Build Template into VSTS Project
 
@@ -17,7 +17,7 @@ From a VSTS instance:
    2. For **PaaS** builds, use ***TBD***
 3. Edit this **\*.json** file
 4. Scroll all the way to the bottom and find the **"project"** property.
-   1. Modify the **"id"** property to match the GUID you found in step **1** above.
+   1. Modify the **"id"** property to match the GUID you found in step **1** above. (Replace "UPDATE-THIS-TO-YOUR-PROJECT-ID")
 5. Save your modified **\*.json** file.
 6. From VSTS online, navigate to the Builds page (Page name: **Build pipelines**)
 ![Import Build](../ReadMeImages/ImportBuild.png)
@@ -125,7 +125,8 @@ Note the **Parameters**. The "Path to solution or packages.config" defaults to *
 
 #### Download GeekHive Scripts
 *   Fields: No fields require attention.
-*   This is an inline PowerShell script that pulls down the contents of https://github.com/GeekHive/SitecoreVSTS for use on the build. This step is **critical** if you wish to use these scripts further in the process: in further Build Steps or with the templated [Release Task Groups](../ReleaseTaskGroups/README.md).
+*   This is an inline PowerShell script that pulls down the contents of https://github.com/GeekHive/SitecoreVSTS for use on the build. This step is **critical** if you wish to use these scripts further in the process: in further Build Steps or with the templated [Release Task Groups](../ReleaseTaskGroups/README.md). The idea is to exclude build/release scripts from your repository and pull them in as-needed during the deployment.
+*   **Note: It is recommended that you fork this repository and reference your fork in order to assure you have full control of your scripts.**
 
 ---
 
@@ -143,7 +144,7 @@ Note the **Parameters**. The "Path to solution or packages.config" defaults to *
 	*   MSBuild Arguments
 	    *   Default Value: /p:OutDir=$(Build.ArtifactStagingDirectory) /p:SkipInvalidConfigurations=true /p:LastDeploymentGitTagName=$(LastDeploymentGitTagName) /p:CustomGitDeltaDeploy=$(EnableGitDeltaDeploy) /p:CullProjectFiles=$(CullProjectFiles)
 		*   Most of the arguments are driven by Build Variables, but you may want to modify "LastDeploymentGitTagName=$(LastDeploymentGitTagName)" if you instead choose to use "LastDeploymentGitCommitID=&(LastProductionReleaseCommitId)" instead and then update the Build Variable "LastProductionReleaseCommitId". If GitDeltaDeploy is not used, clear the LastDeployment* variables values and set "EnableGitDeltaDeploy" to "False".
-*   This task builds the solution. Note, we typically rely on the output of the TDS project that points to the primary Web Project as our promoted build output.
+*   This task builds the solution. **Note, we typically rely on the output of the TDS project that points to the primary Web Project as our promoted build output.**
 
 ---
 
@@ -165,6 +166,7 @@ Note the **Parameters**. The "Path to solution or packages.config" defaults to *
 	    *   Default Value: -pathToPackages "$(Build.ArtifactStagingDirectory)\_Packages"
 		*   Likely no changes needed
 *   Automatically, recursively seeks out *.update files and removes an files from the ~\bin directories.
+*   Assumes TDS Update packages are set to "Items Only".
 
 ---
 
