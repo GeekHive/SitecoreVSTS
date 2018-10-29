@@ -109,6 +109,6 @@ Target the proper version for your web project, respectively.  The contents of t
 This version of SPD follows the progress on the following Fork: https://github.com/jraps20/SitecorePackageDeployer
 
 It adds support for the following:
-*   
+*   Asynchronously install a TDS Update package when used in conjunction with ExecuteUrl.ps1
 
 </details>
