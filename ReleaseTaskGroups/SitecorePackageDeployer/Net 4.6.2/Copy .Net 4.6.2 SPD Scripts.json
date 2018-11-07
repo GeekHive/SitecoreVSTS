@@ -8,7 +8,7 @@
          "enabled":true,
          "timeoutInMinutes":0,
          "inputs":{  
-            "SourceFolder":"$(System.DefaultWorkingDirectory)\\_Base Build\\drop\\SitecoreVSTS\\Scripts\\SPD\\Net4.6.2",
+            "SourceFolder":"$(System.DefaultWorkingDirectory)\\_Base Build\\drop\\SitecoreVSTS\\Scripts\\SPD\\Net4.6",
             "Contents":"App_Config\\Include\\Hhogdev.SitecorePackageDeployer.config\nStartSitecorePackageDeployer.aspx\nbin\\*",
             "TargetFolder":"$(SitecoreWebRoot)",
             "CleanTargetFolder":"false",
@@ -41,7 +41,7 @@
    "modifiedOn":"2018-08-07T13:43:20.267Z",
    "comment":"",
    "id":"7e4025fc-6da5-48ae-aa6a-7969a4f76112",
-   "name":"Copy .Net 4.5 SPD Scripts",
+   "name":"Copy .Net 4.6.2 SPD Scripts",
    "version":{  
       "major":1,
       "minor":0,
