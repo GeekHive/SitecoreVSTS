@@ -44,6 +44,7 @@ if($RepeatInterval -gt 0)
 	 }
 	 catch {
 	  write-host $_
+	  exit 1
 	 }
 
 	 Start-Sleep $RepeatInterval
